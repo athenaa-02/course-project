@@ -26,7 +26,7 @@ catch(error){
 
     return <>
 <form onSubmit={submitHandler}>
-    
+    register
     </form>    
 </>
 }
