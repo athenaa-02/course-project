@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Button from "../../components/Button";
 import { register } from "../../services/auth";
 
 const Registration = () => {
@@ -66,7 +67,7 @@ const Registration = () => {
           value={formData.confirmPassword}
           onChange={handleChange}
         />
-        
+        <Button type='submit'>Register</Button>
       </form>
     </>
   );
