@@ -1,0 +1,32 @@
+.avatar_label {
+  display: flex;
+  align-items: center;
+  width: 215px;
+  height: 100px;
+  cursor: pointer;
+  gap: 15px;
+}
+
+.preview_img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.upload_text {
+  font-size: 13px;
+  font-weight: 400;
+  color: #3e424a;
+}
+
+.upload_btn {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid #e1dfe1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  overflow: hidden;
+}

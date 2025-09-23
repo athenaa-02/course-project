@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "../../components/Button";
 import { register } from "../../services/auth";
+import ImageUpload from "../../components/ImageUpload/ImageUpload";
 
 const Registration = () => {
   // useEffect(() =>{
@@ -38,9 +39,9 @@ const Registration = () => {
     Object.keys(formData).forEach((key) => {
       formDataToSend.append(key, formData[key]);
     });
-    if(!formData.avatar){
-        alert("Please upload an avatar");
-        return;
+    if (!formData.avatar) {
+      alert("Please upload an avatar");
+      return;
     }
     if (formData.password !== formData.password_confirmation) {
       alert("passwords do not match");
@@ -57,18 +58,8 @@ const Registration = () => {
   return (
     <>
       <form onSubmit={submitHandler}>
-        <input
-          type="file"
-          name="avatar"
-          accept="image/*"
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-          required
+        <ImageUpload
+          onFileSelect={(file) => setFormData({ ...formData, avatar: file })}
         />
         <input
           type="email"
