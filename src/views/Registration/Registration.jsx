@@ -38,6 +38,10 @@ const Registration = () => {
     Object.keys(formData).forEach((key) => {
       formDataToSend.append(key, formData[key]);
     });
+    if(!formData.avatar){
+        alert("Please upload an avatar");
+        return;
+    }
     if (formData.password !== formData.password_confirmation) {
       alert("passwords do not match");
       return;
@@ -53,7 +57,12 @@ const Registration = () => {
   return (
     <>
       <form onSubmit={submitHandler}>
-        
+        <input
+          type="file"
+          name="avatar"
+          accept="image/*"
+          onChange={handleChange}
+        />
         <input
           type="text"
           name="username"
