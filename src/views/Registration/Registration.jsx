@@ -63,6 +63,13 @@ const Registration = () => {
         <ImageUpload
           onFileSelect={(file) => setFormData({ ...formData, avatar: file })}
         />
+                <input
+          type="text"
+          name="username"
+          value={formData.username}
+          onChange={handleChange}
+          required
+        />
         <input
           type="email"
           name="email"

@@ -7,3 +7,10 @@ export const register = (data) =>{
         }
     })
 }
+export const login = (data) =>{
+    return instance.post("/login", data, {
+        headers:{
+            "Content-type": "application/json",
+        }
+    })
+}
