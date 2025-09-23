@@ -1,13 +1,12 @@
-import React from 'react'
-import Header from '../../components/header'
+import Header from "../../components/Header/Header";
 
 function Login() {
   return (
-    
     <>
-    login
+      <Header rightContext={<div>log in</div>}></Header>
+      login
     </>
-  )
+  );
 }
 
-export default Login
+export default Login;

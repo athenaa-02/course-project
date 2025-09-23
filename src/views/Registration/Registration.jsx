@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "../../components/Button";
 import { register } from "../../services/auth";
+import Header from "../../components/Header/Header";
 import ImageUpload from "../../components/ImageUpload/ImageUpload";
 
 const Registration = () => {
@@ -57,6 +58,7 @@ const Registration = () => {
 
   return (
     <>
+      <Header rightContext={"registration"}></Header>
       <form onSubmit={submitHandler}>
         <ImageUpload
           onFileSelect={(file) => setFormData({ ...formData, avatar: file })}
