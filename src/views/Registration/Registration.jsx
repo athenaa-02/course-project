@@ -17,28 +17,34 @@ const Registration = () => {
 
   const [formData, setFormData] = useState({
     email: "",
-    avatar: "",
-    password: "",
     username: "",
-    confirmPassword:"",
+    password: "",
+    password_confirmation: "",
+    avatar: null,
   });
 
   const handleChange = (e) => {
+    const { name, value, files } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: files ? files[0] : value,
     });
   };
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if(formData.password !== formData.confirmPassword){
-        alert("passwords do not match")
-        return
+
+    const formDataToSend = new FormData();
+    Object.keys(formData).forEach((key) => {
+      formDataToSend.append(key, formData[key]);
+    });
+    if (formData.password !== formData.password_confirmation) {
+      alert("passwords do not match");
+      return;
     }
     try {
-      const response = await register(formData);
-      console.log(response.data);
+      const response = await register(formDataToSend);
+      console.log("success:", response.data);
     } catch (error) {
       console.error("registration failed:", error.response.data);
     }
@@ -46,32 +52,37 @@ const Registration = () => {
 
   return (
     <>
-      <input
-        type="text"
-        name="username"
-        value={formData.username}
-        onChange={handleChange}
-      />
       <form onSubmit={submitHandler}>
+        
+        <input
+          type="text"
+          name="username"
+          value={formData.username}
+          onChange={handleChange}
+          required
+        />
         <input
           type="email"
           name="email"
           value={formData.email}
           onChange={handleChange}
+          required
         />
         <input
           type="password"
           name="password"
           value={formData.password}
           onChange={handleChange}
+          required
         />
         <input
           type="password"
-          name="confirmPassword"
-          value={formData.confirmPassword}
+          name="password_confirmation"
+          value={formData.password_confirmation}
           onChange={handleChange}
+          required
         />
-        <Button type='submit'>Register</Button>
+        <Button type="submit">Register</Button>
       </form>
     </>
   );
