@@ -15,7 +15,6 @@ const ImageUpload = ({ onFileSelect }) => {
   const handleCancel = () => {
     setPreview(null);
     onFileSelect(null);
-    // document.getElementById("avatar").value = ''
   };
 
   return (
@@ -39,7 +38,7 @@ const ImageUpload = ({ onFileSelect }) => {
             <Camera size={20} />
           )}
         </div>
-        <span className={styles.upload_text}>Upload image</span>
+        <span className={styles.upload_text}>{preview ? 'Upload new' : 'Upload image'}</span>
       </label>
 
       {preview && (
