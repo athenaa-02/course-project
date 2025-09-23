@@ -1,8 +1,12 @@
-import React from 'react'
+import Header from "../../components/Header"
+
 
 function Product() {
   return (
-    <div>Product</div>
+    <>
+    <Header rightContext={"avatar"}></Header>
+    
+    </>
   )
 }
 

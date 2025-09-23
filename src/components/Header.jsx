@@ -1,10 +1,10 @@
-import './Header.css'
+import '../App.css'
 
 function Header({rightContext}) {
   return (
-    <header className='header'>
-      <div className='logo'>
-        {/* <img src="" alt="" /> */}
+    <header>
+      <div className='brand_header'>
+        <img src="/public/Vector.png" alt="" />
         <h1>RedSeam Clothing</h1>
       </div>
       <div>{rightContext}</div>
