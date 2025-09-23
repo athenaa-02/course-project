@@ -12,9 +12,14 @@ const ImageUpload = ({ onFileSelect }) => {
       onFileSelect(file);
     }
   };
+  const handleCancel = () => {
+    setPreview(null);
+    onFileSelect(null);
+    // document.getElementById("avatar").value = ''
+  };
 
   return (
-    <div>
+    <div className={styles.parent}>
       <input
         type="file"
         id="avatar"
@@ -22,7 +27,7 @@ const ImageUpload = ({ onFileSelect }) => {
         style={{ display: "none" }}
         onChange={handleFileChange}
       />
-     <label htmlFor="avatar" className={styles.avatar_label}>
+      <label htmlFor="avatar" className={styles.avatar_label}>
         <div className={styles.upload_btn}>
           {preview ? (
             <img
@@ -36,6 +41,16 @@ const ImageUpload = ({ onFileSelect }) => {
         </div>
         <span className={styles.upload_text}>Upload image</span>
       </label>
+
+      {preview && (
+        <button
+          type="button"
+          className={`${styles.cancel_btn} ${styles.upload_text}`}
+          onClick={handleCancel}
+        >
+          cancel
+        </button>
+      )}
     </div>
   );
 };
