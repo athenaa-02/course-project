@@ -18,3 +18,7 @@ export const login = (data) =>{
 export const logout = () =>{
     localStorage.removeItem("token")
 }
+
+export const getProductsInfo = () =>{
+    return instance.get('/products')
+}

@@ -31,17 +31,6 @@ const Registration = () => {
   const handleBlur = (name) => setFocused({ ...focused, [name]: false });
 
   const navigate = useNavigate();
-  // useEffect(() =>{
-  // const getProducts = async () =>{
-  //     try{
-  //        const response = await getProductsInfo()
-  //     }
-  //     catch(error){
-
-  //     }
-  //  }
-  // getProducts()
-  // }, [])
 
   const [formData, setFormData] = useState({
     email: "",
