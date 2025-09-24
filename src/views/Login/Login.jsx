@@ -1,10 +1,21 @@
 import Header from "../../components/Header";
 import { login } from "../../services/auth";
 import Button from "../../components/Button";
+import userLogo from "../../assets/userLogo.png";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
+ const headerPart = (
+    <div className="user_wrapper">
+      <img src={userLogo} alt="" />
+      <Link className="login_link" to={"/"}>
+        log in
+      </Link>
+    </div>
+  );
+
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
     email: "",
@@ -31,7 +42,7 @@ function Login() {
   };
   return (
     <>
-      <Header rightContext={<div>log in</div>}></Header>
+      <Header rightContext={headerPart}></Header>
       <form onSubmit={submitHandler}>
         <input
           type="email"

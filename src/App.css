@@ -6,6 +6,7 @@ body {
 }
 
 * {
+  box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
 
@@ -16,7 +17,6 @@ input::placeholder {
 }
 input {
   padding: 12px;
-  box-sizing: border-box;
   border-radius: 8px;
   border: 1px solid #e1dfe1;
 }
@@ -46,6 +46,18 @@ header {
   .right_side {
     cursor: pointer;
   }
+    .login_link {
+    color: black;
+    font-size: 12px;
+  }
+  .user_wrapper {
+    display: flex;
+    align-items: center;
+  }
+  img{
+    width: 13.2px;
+    height: 16px;
+  }
 }
 
 button {
@@ -54,4 +66,5 @@ button {
   color: white;
   border-radius: 10px;
   cursor: pointer;
+  font-size: 14px;
 }

@@ -2,12 +2,23 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { register } from "../../services/auth";
-import { Link } from "react-router-dom";
 import "./Registration.css";
+import brandImg from "../../assets/brandImg.png";
+import userLogo from "../../assets/userLogo.png";
 import Header from "../../components/Header";
+import { Link } from "react-router-dom";
 import ImageUpload from "../../components/ImageUpload/ImageUpload";
 
 const Registration = () => {
+  const headerPart = (
+    <div className="user_wrapper">
+      <img src={userLogo} alt="" />
+      <Link className="login_link" to={"/"}>
+        log in
+      </Link>
+    </div>
+  );
+
   const navigate = useNavigate();
   // useEffect(() =>{
   // const getProducts = async () =>{
@@ -63,14 +74,15 @@ const Registration = () => {
 
   return (
     <>
-      <Header rightContext={"log in"}></Header>
+      <Header rightContext={headerPart}></Header>
       <main className="registration_main">
         <aside className="img_aside">
-          <img src="/public/bandImg.png" alt="" />
+          <img src={brandImg} alt="" />
         </aside>
         <aside className="form_aside">
-          <h2>Registration</h2>
           <form onSubmit={submitHandler}>
+            <h2>Registration</h2>
+
             <ImageUpload
               onFileSelect={(file) =>
                 setFormData({ ...formData, avatar: file })
@@ -112,7 +124,9 @@ const Registration = () => {
           </form>
           <div>
             <span>Already member?</span>
-            <Link to={"/"}>log in</Link>
+            <Link className="login_link" to={"/"}>
+              log in
+            </Link>
           </div>
         </aside>
       </main>

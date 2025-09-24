@@ -1,33 +1,48 @@
-.registration_main{
-display: flex;
-.img_aside{
-
-}
-.form_aside{
+.registration_main {
+  display: flex;
+  .img_aside {
+  }
+  .form_aside {
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-}
-form{
+  }
+  form {
     display: flex;
     flex-direction: column;
     gap: 24px;
     width: 554px;
-}
-h2{
+
+    input {
+      width: 100%;
+      height: 42px;
+    }
+    button {
+      height: 41px;
+      margin: 22px 0 24px 0;
+    }
+  }
+  h2 {
     font-size: 42px;
     font-weight: 600;
-    color: #10151F;
+    color: #10151f;
+    text-align: left;
+    margin: 0 0 24px 0;
+  }
+  span {
+    color: #3e424a;
+    font-size: 14px;
+  }
+}
+.login_link {
+  font-weight: 500;
+  color: #ff4000;
+  text-decoration: none;
+  margin-left: 8px;
 }
 
-input{
-    width: 100%;
-    height: 42px;
-}
-button{
-    height: 41px;
+header {
 
-}
 }
