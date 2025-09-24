@@ -1,9 +1,21 @@
 import Header from "../../components/Header";
+import LogoutButton from "../../components/LogoutButton";
 
 function Checkout() {
+  const headerPart = (
+    <div>
+      <div>cart</div>
+      <div>avatar</div>
+      
+      <div>
+        <LogoutButton></LogoutButton>
+      </div>
+      
+    </div>
+  )
   return (
     <>
-      <Header rightContext={"avatar"}></Header>
+      <Header rightContext={headerPart}></Header>
     </>
   );
 }

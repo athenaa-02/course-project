@@ -1,17 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { logout } from "../services/auth";
 
-const LogoutButton = () =>{
-    const navigate = useNavigate()
+const LogoutButton = () => {
+  const navigate = useNavigate();
 
-    const handleLogout = () =>{
-        logout()
-        navigate("/login")
-    }
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
-    return(
-    <button onClick={handleLogout}>Logout</button>    
-    )
-}
+  return <button onClick={handleLogout}>Logout</button>;
+};
 
-export default LogoutButton
+export default LogoutButton;
