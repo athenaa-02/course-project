@@ -72,6 +72,7 @@ const Registration = () => {
       await validationSchema.validate(formData, {abortEarly:false})
       setErrors({})
       const response = await register(formDataToSend);
+      localStorage.setItem("token", response.data.token);
       console.log("success:", response.data);
       navigate("/products");
     } catch (err) {
