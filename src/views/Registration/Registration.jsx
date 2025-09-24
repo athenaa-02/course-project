@@ -19,7 +19,10 @@ const Registration = () => {
     </div>
   );
 
-  const [focused, setFocused] = useState();
+  const [focused, setFocused] = useState({});
+  const handleFocus = (name) => setFocused({ ...focused, [name]: true });
+  const handleBlur = (name) => setFocused({ ...focused, [name]: false });
+
   const navigate = useNavigate();
   // useEffect(() =>{
   // const getProducts = async () =>{
@@ -93,56 +96,80 @@ const Registration = () => {
               <input
                 type="text"
                 name="username"
-                placeholder={`${focused ? "" : "Username"}`}
+                placeholder={`${focused["Username"] ? "" : "Username"}`}
                 value={formData.username}
                 onChange={handleChange}
-                onFocus={() => setFocused(true)}
-                onBlur={() => setFocused(false)}
+                onFocus={() => handleFocus("Username")}
+                onBlur={() => handleBlur("Username")}
                 required
               />
-              <span className={`asterisk first_asterisk ${focused ? "hidden" : ""}`}>*</span>
-
-              <span className={`asterisk ${focused ? "hidden" : ""}`}>*</span>
+              <span
+                className={`asterisk first_asterisk ${
+                  focused["Username"] ? "hidden" : ""
+                }`}
+              >
+                *
+              </span>
             </div>
             <div className="input_wrapper">
               <input
                 type="email"
-                placeholder={`${focused ? "" : "Email"}`}
+                placeholder={`${focused["Email"] ? "" : "Email"}`}
                 name="email"
                 value={formData.email}
-                onFocus={() => setFocused(true)}
-                onBlur={() => setFocused(false)}
+                onFocus={() => handleFocus("Email")}
+                onBlur={() => handleBlur("Email")}
                 onChange={handleChange}
                 required
               />
-              <span className={`asterisk second_asterisk ${focused ? "hidden" : ""}`}>*</span>
+              <span
+                className={`asterisk second_asterisk ${
+                  focused["Email"] ? "hidden" : ""
+                }`}
+              >
+                *
+              </span>
             </div>
             <div className="input_wrapper">
               <input
                 type="password"
-                placeholder={`${focused ? "" : "Password"}`}
+                placeholder={`${focused["Password"] ? "" : "Password"}`}
                 name="password"
                 value={formData.password}
-                onFocus={() => setFocused(true)}
-                onBlur={() => setFocused(false)}
+                onFocus={() => handleFocus("Password")}
+                onBlur={() => handleBlur("Password")}
                 onChange={handleChange}
                 required
               />
-              <span className={`asterisk third_asterisk ${focused ? "hidden" : ""}`}>*</span>
+              <span
+                className={`asterisk third_asterisk ${
+                  focused["Password"] ? "hidden" : ""
+                }`}
+              >
+                *
+              </span>
             </div>
 
             <div className="input_wrapper">
               <input
                 type="password"
-                placeholder={`${focused ? "" : "Confirm password"}`}
+                placeholder={`${
+                  focused["password_confirmation"] ? "" : "Confirm password"
+                }`}
                 name="password_confirmation"
                 value={formData.password_confirmation}
                 onChange={handleChange}
-                onFocus={() => setFocused(true)}
-                onBlur={() => setFocused(false)}
+                onFocus={() => handleFocus("password_confirmation")}
+                onBlur={() => handleBlur("password_confirmation")}
                 required
               />
-              <span className={`asterisk fourth_asterisk ${focused ? "hidden" : ""}`}>*</span>
+              <span
+                className={`asterisk fourth_asterisk ${
+                  focused["password_confirmation"] ? "hidden" : ""
+                }`}
+              >
+                *
+              </span>
             </div>
 
             <Button type="submit">Register</Button>
