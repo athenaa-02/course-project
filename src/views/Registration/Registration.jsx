@@ -11,6 +11,7 @@ import ImageUpload from "../../components/ImageUpload/ImageUpload";
 
 const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const headerPart = (
     <div className="user_wrapper">
@@ -107,7 +108,7 @@ const Registration = () => {
               />
               <span
                 className={`asterisk first_asterisk ${
-                  focused["Username"] || formData.username? "hidden" : ""
+                  focused["Username"] || formData.username ? "hidden" : ""
                 }`}
               >
                 *
@@ -151,7 +152,7 @@ const Registration = () => {
                 *
               </span>
               <img
-                onClick={() =>setShowPassword(!showPassword)}
+                onClick={() => setShowPassword(!showPassword)}
                 src={eyeLogo}
                 alt=""
               />
@@ -159,7 +160,7 @@ const Registration = () => {
 
             <div className="input_wrapper">
               <input
-                type={showPassword ? "text" : "password"}
+                type={showConfirmPassword ? "text" : "password"}
                 placeholder={`${
                   focused["password_confirmation"] ? "" : "Confirm password"
                 }`}
@@ -172,13 +173,16 @@ const Registration = () => {
               />
               <span
                 className={`asterisk fourth_asterisk ${
-                  focused["password_confirmation"] || formData.password_confirmation ? "hidden" : ""
+                  focused["password_confirmation"] ||
+                  formData.password_confirmation
+                    ? "hidden"
+                    : ""
                 }`}
               >
                 *
               </span>
               <img
-                onClick={() =>setShowPassword(!showPassword)}
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 src={eyeLogo}
                 alt=""
               />
