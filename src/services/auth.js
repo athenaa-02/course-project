@@ -14,3 +14,7 @@ export const login = (data) =>{
         }
     })
 }
+
+export const logout = () =>{
+    localStorage.removeItem("token")
+}

@@ -5,6 +5,7 @@ import Product from "./views/Product/Product";
 import Products from "./views/Products/Products";
 import Checkout from "./views/Checkout/Checkout";
 import { Route, Routes } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -12,9 +13,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/product" element={<Product />} />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/products" element={<ProtectedRoute><Products /></ProtectedRoute>} />
+        <Route path="/product" element={<ProtectedRoute><Product/></ProtectedRoute>} />
+        <Route path="/checkout" element={<ProtectedRoute><Checkout/></ProtectedRoute>} />
       </Routes>
     </>
   );
