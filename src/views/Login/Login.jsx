@@ -8,6 +8,9 @@ import brandImg from "../../assets/brandImg.png";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const [focused, setFocused] = useState({});
+  const handleFocus = (name) => setFocused({ ...focused, [name]: true });
+  const handleBlur = (name) => setFocused({ ...focused, [name]: false });
 
 
   const headerPart = (
@@ -53,21 +56,44 @@ function Login() {
         <aside className="form_aside">
           <form onSubmit={submitHandler}>
             <h2>Log in</h2>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-
+            <div className="input_wrapper">
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                onFocus={() => handleFocus("email")}
+                placeholder={`${focused["email"] ? "" : "Email"}`}
+                onBlur={() => handleBlur("email")}
+                required
+              />
+              <span
+                className={`asterisk second_asterisk ${
+                  focused["email"] ? "hidden" : ""
+                }`}
+              >
+                *
+              </span>
+            </div>
+            <div className="input_wrapper">
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                placeholder={`${focused["password"] ? "" : "password"}`}
+                onChange={handleChange}
+                onFocus={() => handleFocus("password")}
+                onBlur={() => handleBlur("password")}
+                required
+              />
+              <span
+                className={`asterisk third_asterisk ${
+                  focused["password"] ? "hidden" : ""
+                }`}
+              >
+                *
+              </span>
+            </div>
             <Button type="submit">Log in</Button>
           </form>
         </aside>
