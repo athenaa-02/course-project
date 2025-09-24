@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { register } from "../../services/auth";
-import "./Registration.css";
 import brandImg from "../../assets/brandImg.png";
 import userLogo from "../../assets/userLogo.png";
 import Header from "../../components/Header";
@@ -79,7 +78,7 @@ const Registration = () => {
   return (
     <>
       <Header rightContext={headerPart}></Header>
-      <main className="registration_main">
+      <main style={{display:'flex'}}>
         <aside className="img_aside">
           <img src={brandImg} alt="" />
         </aside>
