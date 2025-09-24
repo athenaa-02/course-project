@@ -64,6 +64,7 @@ const Registration = () => {
 
     const formDataToSend = new FormData();
     Object.keys(formData).forEach((key) => {
+      if(key === 'avatar' && !formData[key]) return;
       formDataToSend.append(key, formData[key]);
     });
     
@@ -74,6 +75,7 @@ const Registration = () => {
       console.log("success:", response.data);
       navigate("/products");
     } catch (err) {
+      console.error("API Error:", err.response?.data || err);
       const newErrors = {}
       if(err.inner){
         err.inner.forEach((e) =>{
@@ -83,7 +85,7 @@ const Registration = () => {
 
       if(err.response?.data?.errors){
         const apiErrors = err.response.data.errors
-        object.keays(apiErrors).forEach((key) =>{
+        Object.keys(apiErrors).forEach((key) =>{
           newErrors[key] = apiErrors[key][0]
         })
       }

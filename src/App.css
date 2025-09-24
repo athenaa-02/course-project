@@ -144,6 +144,7 @@ button {
   color: #FF4000;
   font-weight: 300;
   font-size: 10px;
+  margin: 0;
 }
 
 .error_input{
