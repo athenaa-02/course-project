@@ -5,10 +5,13 @@ import { register } from "../../services/auth";
 import brandImg from "../../assets/brandImg.png";
 import userLogo from "../../assets/userLogo.png";
 import Header from "../../components/Header";
+import eyeLogo from "../../assets/eyeLogo.png";
 import { Link } from "react-router-dom";
 import ImageUpload from "../../components/ImageUpload/ImageUpload";
 
 const Registration = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
   const headerPart = (
     <div className="user_wrapper">
       <img src={userLogo} alt="" />
@@ -78,7 +81,7 @@ const Registration = () => {
   return (
     <>
       <Header rightContext={headerPart}></Header>
-      <main style={{display:'flex'}}>
+      <main style={{ display: "flex" }}>
         <aside className="img_aside">
           <img src={brandImg} alt="" />
         </aside>
@@ -131,7 +134,7 @@ const Registration = () => {
             </div>
             <div className="input_wrapper">
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder={`${focused["Password"] ? "" : "Password"}`}
                 name="password"
                 value={formData.password}
@@ -147,11 +150,16 @@ const Registration = () => {
               >
                 *
               </span>
+              <img
+                onClick={() =>setShowPassword(!showPassword)}
+                src={eyeLogo}
+                alt=""
+              />
             </div>
 
             <div className="input_wrapper">
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder={`${
                   focused["password_confirmation"] ? "" : "Confirm password"
                 }`}
@@ -169,6 +177,11 @@ const Registration = () => {
               >
                 *
               </span>
+              <img
+                onClick={() =>setShowPassword(!showPassword)}
+                src={eyeLogo}
+                alt=""
+              />
             </div>
 
             <Button type="submit">Register</Button>

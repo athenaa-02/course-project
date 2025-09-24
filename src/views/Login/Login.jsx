@@ -6,8 +6,12 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import brandImg from "../../assets/brandImg.png";
 import { useNavigate } from "react-router-dom";
+import eyeLogo from '../../assets/eyeLogo.png'
 
 function Login() {
+
+  const [showPassword, setShowPassword] = useState(false)
+
   const [focused, setFocused] = useState({});
   const handleFocus = (name) => setFocused({ ...focused, [name]: true });
   const handleBlur = (name) => setFocused({ ...focused, [name]: false });
@@ -76,7 +80,7 @@ function Login() {
             </div>
             <div className="input_wrapper">
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 name="password"
                 value={formData.password}
                 placeholder={`${focused["password"] ? "" : "password"}`}
@@ -92,6 +96,8 @@ function Login() {
               >
                 *
               </span>
+              <img onClick={() => setShowPassword(!showPassword)} src={eyeLogo} alt="" />
+
             </div>
             <Button type="submit">Log in</Button>
           </form>

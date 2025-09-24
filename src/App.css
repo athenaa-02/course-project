@@ -132,4 +132,10 @@ button {
   .hidden {
     display: none;
   }
+  img{
+    position: absolute;
+    right: 13.65px;
+    top: 14.75px;
+    cursor: pointer;
+  }
 }
