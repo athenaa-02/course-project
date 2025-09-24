@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { register } from "../../services/auth";
 import Header from "../../components/Header";
 import ImageUpload from "../../components/ImageUpload/ImageUpload";
 
 const Registration = () => {
+  const navigate = useNavigate()
   // useEffect(() =>{
   // const getProducts = async () =>{
   //     try{
@@ -16,6 +18,9 @@ const Registration = () => {
   //  }
   // getProducts()
   // }, [])
+
+ 
+
 
   const [formData, setFormData] = useState({
     email: "",
@@ -51,6 +56,7 @@ const Registration = () => {
     try {
       const response = await register(formDataToSend);
       console.log("success:", response.data);
+      navigate("/products")
     } catch (error) {
       console.error("registration failed:", error.response.data);
     }

@@ -2,9 +2,10 @@ import Header from "../../components/Header";
 import { login } from "../../services/auth";
 import Button from "../../components/Button";
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -23,6 +24,7 @@ function Login() {
       const response = await login(formData);
       console.log("login success:", response.data);
       localStorage.setItem("token", response.data.token);
+      navigate("/products");
     } catch (error) {
       console.error("login failed: ", error.response?.data || error.message);
     }

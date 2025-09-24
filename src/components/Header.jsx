@@ -7,7 +7,7 @@ function Header({rightContext}) {
         <img src="/public/Vector.png" alt="" />
         <h1>RedSeam Clothing</h1>
       </div>
-      <div>{rightContext}</div>
+      <div className='right_side'>{rightContext}</div>
       </header>
   )
 }
