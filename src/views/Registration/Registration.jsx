@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { register } from "../../services/auth";
+import { Link } from "react-router-dom";
+import "./Registration.css";
 import Header from "../../components/Header";
 import ImageUpload from "../../components/ImageUpload/ImageUpload";
 
 const Registration = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   // useEffect(() =>{
   // const getProducts = async () =>{
   //     try{
@@ -18,9 +20,6 @@ const Registration = () => {
   //  }
   // getProducts()
   // }, [])
-
- 
-
 
   const [formData, setFormData] = useState({
     email: "",
@@ -56,7 +55,7 @@ const Registration = () => {
     try {
       const response = await register(formDataToSend);
       console.log("success:", response.data);
-      navigate("/products")
+      navigate("/products");
     } catch (error) {
       console.error("registration failed:", error.response.data);
     }
@@ -65,40 +64,58 @@ const Registration = () => {
   return (
     <>
       <Header rightContext={"log in"}></Header>
-      <form onSubmit={submitHandler}>
-        <ImageUpload
-          onFileSelect={(file) => setFormData({ ...formData, avatar: file })}
-        />
-                <input
-          type="text"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="password_confirmation"
-          value={formData.password_confirmation}
-          onChange={handleChange}
-          required
-        />
-        <Button type="submit">Register</Button>
-      </form>
+      <main className="registration_main">
+        <aside className="img_aside">
+          <img src="/public/bandImg.png" alt="" />
+        </aside>
+        <aside className="form_aside">
+          <h2>Registration</h2>
+          <form onSubmit={submitHandler}>
+            <ImageUpload
+              onFileSelect={(file) =>
+                setFormData({ ...formData, avatar: file })
+              }
+            />
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={formData.username}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="password"
+              placeholder="Confirm password"
+              name="password_confirmation"
+              value={formData.password_confirmation}
+              onChange={handleChange}
+              required
+            />
+            <Button type="submit">Register</Button>
+          </form>
+          <div>
+            <span>Already member?</span>
+            <Link to={"/"}>log in</Link>
+          </div>
+        </aside>
+      </main>
     </>
   );
 };

@@ -1,0 +1,33 @@
+.registration_main{
+display: flex;
+.img_aside{
+
+}
+.form_aside{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 554px;
+}
+h2{
+    font-size: 42px;
+    font-weight: 600;
+    color: #10151F;
+}
+
+input{
+    width: 100%;
+    height: 42px;
+}
+button{
+    height: 41px;
+
+}
+}
