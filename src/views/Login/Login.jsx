@@ -12,7 +12,6 @@ function Login() {
   const handleFocus = (name) => setFocused({ ...focused, [name]: true });
   const handleBlur = (name) => setFocused({ ...focused, [name]: false });
 
-
   const headerPart = (
     <div className="user_wrapper">
       <img src={userLogo} alt="" />
@@ -96,6 +95,12 @@ function Login() {
             </div>
             <Button type="submit">Log in</Button>
           </form>
+          <div>
+            <span>Not a member?</span>
+            <Link className="login_link" to={"/registration"}>
+              Register
+            </Link>
+          </div>
         </aside>
       </main>
     </>
