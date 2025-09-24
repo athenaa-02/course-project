@@ -107,7 +107,7 @@ const Registration = () => {
               />
               <span
                 className={`asterisk first_asterisk ${
-                  focused["Username"] ? "hidden" : ""
+                  focused["Username"] || formData.username? "hidden" : ""
                 }`}
               >
                 *
@@ -126,7 +126,7 @@ const Registration = () => {
               />
               <span
                 className={`asterisk second_asterisk ${
-                  focused["Email"] ? "hidden" : ""
+                  focused["Email"] || formData.email ? "hidden" : ""
                 }`}
               >
                 *
@@ -145,7 +145,7 @@ const Registration = () => {
               />
               <span
                 className={`asterisk third_asterisk ${
-                  focused["Password"] ? "hidden" : ""
+                  focused["Password"] || formData.password ? "hidden" : ""
                 }`}
               >
                 *
@@ -172,7 +172,7 @@ const Registration = () => {
               />
               <span
                 className={`asterisk fourth_asterisk ${
-                  focused["password_confirmation"] ? "hidden" : ""
+                  focused["password_confirmation"] || formData.password_confirmation ? "hidden" : ""
                 }`}
               >
                 *

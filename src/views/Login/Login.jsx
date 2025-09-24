@@ -72,7 +72,7 @@ function Login() {
               />
               <span
                 className={`asterisk second_asterisk ${
-                  focused["email"] ? "hidden" : ""
+                  focused["email"] || formData.email ? "hidden" : ""
                 }`}
               >
                 *
@@ -91,7 +91,7 @@ function Login() {
               />
               <span
                 className={`asterisk third_asterisk ${
-                  focused["password"] ? "hidden" : ""
+                  focused["password"] || formData.password ? "hidden" : ""
                 }`}
               >
                 *
