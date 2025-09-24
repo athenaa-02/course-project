@@ -7,11 +7,15 @@ import userLogo from "../../assets/userLogo.png";
 import Header from "../../components/Header";
 import eyeLogo from "../../assets/eyeLogo.png";
 import { Link } from "react-router-dom";
+import { validationSchema } from "../../components/validations";
 import ImageUpload from "../../components/ImageUpload/ImageUpload";
 
 const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const [errors, setErrors] = useState({})
+
 
   const headerPart = (
     <div className="user_wrapper">
@@ -62,21 +66,30 @@ const Registration = () => {
     Object.keys(formData).forEach((key) => {
       formDataToSend.append(key, formData[key]);
     });
-    if (!formData.avatar) {
-      alert("Please upload an avatar");
-      return;
-    }
-    if (formData.password !== formData.password_confirmation) {
-      alert("passwords do not match");
-      return;
-    }
+    
     try {
+      await validationSchema.validate(formData, {abortEarly:false})
+      setErrors({})
       const response = await register(formDataToSend);
       console.log("success:", response.data);
       navigate("/products");
-    } catch (error) {
-      console.error("registration failed:", error.response.data);
+    } catch (err) {
+      const newErrors = {}
+      if(err.inner){
+        err.inner.forEach((e) =>{
+          newErrors[e.path] = e.message
+        })
+      }
+
+      if(err.response?.data?.errors){
+        const apiErrors = err.response.data.errors
+        object.keays(apiErrors).forEach((key) =>{
+          newErrors[key] = apiErrors[key][0]
+        })
+      }
+      setErrors(newErrors)
     }
+    
   };
 
   return (
@@ -99,16 +112,18 @@ const Registration = () => {
               <input
                 type="text"
                 name="username"
-                placeholder={`${focused["Username"] ? "" : "Username"}`}
+                placeholder={`${focused["username"] ? "" : "username"}`}
                 value={formData.username}
                 onChange={handleChange}
-                onFocus={() => handleFocus("Username")}
-                onBlur={() => handleBlur("Username")}
+                onFocus={() => handleFocus("username")}
+                onBlur={() => handleBlur("username")}
                 required
+                className={errors.username ? 'error_input' : ''}
               />
+              {errors.username && <p className="error_text">{errors.username}</p>}
               <span
                 className={`asterisk first_asterisk ${
-                  focused["Username"] || formData.username ? "hidden" : ""
+                  focused["username"] || formData.username ? "hidden" : ""
                 }`}
               >
                 *
@@ -117,17 +132,20 @@ const Registration = () => {
             <div className="input_wrapper">
               <input
                 type="email"
-                placeholder={`${focused["Email"] ? "" : "Email"}`}
+                placeholder={`${focused["email"] ? "" : "email"}`}
                 name="email"
                 value={formData.email}
-                onFocus={() => handleFocus("Email")}
-                onBlur={() => handleBlur("Email")}
+                onFocus={() => handleFocus("email")}
+                onBlur={() => handleBlur("email")}
                 onChange={handleChange}
                 required
+                className={errors.email ? 'error_input' : ''}
               />
+              {errors.email && <p className="error_text">{errors.email}</p>}
+
               <span
                 className={`asterisk second_asterisk ${
-                  focused["Email"] || formData.email ? "hidden" : ""
+                  focused["email"] || formData.email ? "hidden" : ""
                 }`}
               >
                 *
@@ -136,17 +154,20 @@ const Registration = () => {
             <div className="input_wrapper">
               <input
                 type={showPassword ? "text" : "password"}
-                placeholder={`${focused["Password"] ? "" : "Password"}`}
+                placeholder={`${focused["password"] ? "" : "password"}`}
                 name="password"
                 value={formData.password}
-                onFocus={() => handleFocus("Password")}
-                onBlur={() => handleBlur("Password")}
+                onFocus={() => handleFocus("password")}
+                onBlur={() => handleBlur("password")}
                 onChange={handleChange}
                 required
+                className={errors.password ? 'error_input' : ''}
               />
+              {errors.password && <p className="error_text">{errors.password}</p>}
+
               <span
                 className={`asterisk third_asterisk ${
-                  focused["Password"] || formData.password ? "hidden" : ""
+                  focused["password"] || formData.password ? "hidden" : ""
                 }`}
               >
                 *
@@ -170,7 +191,10 @@ const Registration = () => {
                 onFocus={() => handleFocus("password_confirmation")}
                 onBlur={() => handleBlur("password_confirmation")}
                 required
+                className={errors.password_confirmation ? 'error_input' : ''}
               />
+              {errors.password_confirmation && <p className="error_text">{errors.password_confirmation}</p>}
+
               <span
                 className={`asterisk fourth_asterisk ${
                   focused["password_confirmation"] ||

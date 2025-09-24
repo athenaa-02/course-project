@@ -139,3 +139,13 @@ button {
     cursor: pointer;
   }
 }
+
+.error_text{
+  color: #FF4000;
+  font-weight: 300;
+  font-size: 10px;
+}
+
+.error_input{
+  border: 1px solid #FF4000;
+}
