@@ -19,6 +19,7 @@
       width: 100%;
       height: 42px;
     }
+
     button {
       height: 41px;
       margin: 22px 0 24px 0;
@@ -43,6 +44,24 @@
   margin-left: 8px;
 }
 
-header {
-
+.input_wrapper {
+  position: relative;
+  .asterisk {
+    color: red;
+    position: absolute;
+    top: 10px;
+    left: 90px;
+  }
+  .second_asterisk {
+    left: 57px;
+  }
+  .third_asterisk {
+    left: 87px;
+  }
+  .fourth_asterisk {
+    left: 147px;
+  }
+  .hidden {
+    display: none;
+  }
 }

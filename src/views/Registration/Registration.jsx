@@ -19,6 +19,7 @@ const Registration = () => {
     </div>
   );
 
+  const [focused, setFocused] = useState();
   const navigate = useNavigate();
   // useEffect(() =>{
   // const getProducts = async () =>{
@@ -88,38 +89,62 @@ const Registration = () => {
                 setFormData({ ...formData, avatar: file })
               }
             />
-            <input
-              type="text"
-              name="username"
-              placeholder="Username"
-              value={formData.username}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="password"
-              placeholder="Confirm password"
-              name="password_confirmation"
-              value={formData.password_confirmation}
-              onChange={handleChange}
-              required
-            />
+            <div className="input_wrapper">
+              <input
+                type="text"
+                name="username"
+                placeholder={`${focused ? "" : "Username"}`}
+                value={formData.username}
+                onChange={handleChange}
+                onFocus={() => setFocused(true)}
+                onBlur={() => setFocused(false)}
+                required
+              />
+              <span className={`asterisk first_asterisk ${focused ? "hidden" : ""}`}>*</span>
+
+              <span className={`asterisk ${focused ? "hidden" : ""}`}>*</span>
+            </div>
+            <div className="input_wrapper">
+              <input
+                type="email"
+                placeholder={`${focused ? "" : "Email"}`}
+                name="email"
+                value={formData.email}
+                onFocus={() => setFocused(true)}
+                onBlur={() => setFocused(false)}
+                onChange={handleChange}
+                required
+              />
+              <span className={`asterisk second_asterisk ${focused ? "hidden" : ""}`}>*</span>
+            </div>
+            <div className="input_wrapper">
+              <input
+                type="password"
+                placeholder={`${focused ? "" : "Password"}`}
+                name="password"
+                value={formData.password}
+                onFocus={() => setFocused(true)}
+                onBlur={() => setFocused(false)}
+                onChange={handleChange}
+                required
+              />
+              <span className={`asterisk third_asterisk ${focused ? "hidden" : ""}`}>*</span>
+            </div>
+
+            <div className="input_wrapper">
+              <input
+                type="password"
+                placeholder={`${focused ? "" : "Confirm password"}`}
+                name="password_confirmation"
+                value={formData.password_confirmation}
+                onChange={handleChange}
+                onFocus={() => setFocused(true)}
+                onBlur={() => setFocused(false)}
+                required
+              />
+              <span className={`asterisk fourth_asterisk ${focused ? "hidden" : ""}`}>*</span>
+            </div>
+
             <Button type="submit">Register</Button>
           </form>
           <div>
