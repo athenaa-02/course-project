@@ -1,63 +1,73 @@
-.products_header{
-    display: flex;
-    justify-content: space-between;
-    padding: 0 100px;
-    margin: 72px 0 0 0 ;
+.products_header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 100px;
+  margin: 72px 0 0 0;
 }
-.products_header_right{
-    display: flex;
-    gap: 32px;
-    align-items: center;
-    figure{
-        margin: 0;
-        height: 14px;
-        width: 2px;
-        background-color: #E1DFE1;
-    }
-    
-}
-
-.filter_menu{
-    display: flex;
-    align-items: center;
-    gap: 11.75px;
-    position: relative;
-}
-.sort_menu{
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    cursor: pointer;
-}
-h3{
-    font-size: 42px;
-    font-weight: 600;
-    color: #10151F;
+.products_header_right {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  figure {
     margin: 0;
-}
-.filter_by_price{
-    position: absolute;
-    background-color: white;
-    width: 392px;
-    height: 169px;
-    display: flex;
-    border-radius: 8px;
-    flex-direction: column;
-    p{
-        font-weight: 600;
-        font-size: 16px;
-        color: #10151F;
-    }
-}
-button.apply{
-    width: 124px;
-    height: 41px;
-    align-self: flex-end;
-    margin-top: 10px;
-}
-.wrapper{
-    display: flex;
-    gap: 10px;
-    position: relative;
+    height: 14px;
+    width: 2px;
+    background-color: #e1dfe1;
+  }
 }
 
+.filter_menu {
+  display: flex;
+  align-items: center;
+  gap: 11.75px;
+  position: relative;
+  cursor: pointer;
+}
+.sort_menu {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  cursor: pointer;
+}
+h3 {
+  font-size: 42px;
+  font-weight: 600;
+  color: #10151f;
+  margin: 0;
+}
+.filter_by_price {
+  position: absolute;
+  background-color: white;
+  width: 392px;
+  height: 169px;
+  display: flex;
+  border-radius: 8px;
+  flex-direction: column;
+  top: 35px;
+  right: -10px;
+  border: 1px solid #e1dfe1;
+  padding: 16px;
+  p {
+    font-weight: 600;
+    font-size: 16px;
+    color: #10151f;
+    margin-top: 0;
+  }
+  input{
+    width: 175px;
+  }
+}
+button.apply {
+  width: 124px;
+  height: 41px;
+  align-self: flex-end;
+  margin-top: 10px;
+}
+.wrapper {
+  display: flex;
+  gap: 10px;
+  position: relative;
+}
+.hidden{
+    display: none;
+}

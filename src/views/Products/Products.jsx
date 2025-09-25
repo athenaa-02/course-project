@@ -10,9 +10,14 @@ function Products() {
   const [focused, setFocused] = useState({ from: false, to: false });
   const [products, setProducts] = useState([]);
   const [values, setValues] = useState({ from: "", to: "" });
+  const [showMenu, setShowMenu] = useState(false)
 
   const handleFocus = (name) => setFocused({ ...focused, [name]: true });
   const handleBlur = (name) => setFocused({ ...focused, [name]: false });
+
+const handleShowFilter = () => {
+setShowMenu((prev) => !prev)
+}
 
   // useEffect(() => {
   //   const fetchProducts = async () => {
@@ -37,10 +42,10 @@ function Products() {
             showing <span>1-10</span> of <span>100</span>results
           </span>
           <figure></figure>
-          <div className={styles.filter_menu}>
+          <div className={styles.filter_menu} onClick={handleShowFilter}>
             <img src={filterLogo} />
             <span>Filter</span>
-            <div className={styles.filter_by_price}>
+            <div className={`${styles.filter_by_price} ${showMenu ? "" : styles.hidden}`}>
               <p>Select price</p>
               <div className={styles.wrapper}>
                 <input
