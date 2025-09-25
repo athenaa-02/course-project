@@ -7,15 +7,14 @@ import userLogo from "../../assets/userLogo.png";
 import Header from "../../components/Header";
 import eyeLogo from "../../assets/eyeLogo.png";
 import { Link } from "react-router-dom";
-import { validationSchema } from "../../components/validations";
+import { validationSchema } from "../../components/Validations";
 import ImageUpload from "../../components/ImageUpload/ImageUpload";
 
 const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const [errors, setErrors] = useState({})
-
+  const [errors, setErrors] = useState({});
 
   const headerPart = (
     <div className="user_wrapper">
@@ -53,35 +52,34 @@ const Registration = () => {
 
     const formDataToSend = new FormData();
     Object.keys(formData).forEach((key) => {
-      if(key === 'avatar' && !formData[key]) return;
+      if (key === "avatar" && !formData[key]) return;
       formDataToSend.append(key, formData[key]);
     });
-    
+
     try {
-      await validationSchema.validate(formData, {abortEarly:false})
-      setErrors({})
+      await validationSchema.validate(formData, { abortEarly: false });
+      setErrors({});
       const response = await register(formDataToSend);
       localStorage.setItem("token", response.data.token);
       console.log("success:", response.data);
       navigate("/products");
     } catch (err) {
       console.error("API Error:", err.response?.data || err);
-      const newErrors = {}
-      if(err.inner){
-        err.inner.forEach((e) =>{
-          newErrors[e.path] = e.message
-        })
+      const newErrors = {};
+      if (err.inner) {
+        err.inner.forEach((e) => {
+          newErrors[e.path] = e.message;
+        });
       }
 
-      if(err.response?.data?.errors){
-        const apiErrors = err.response.data.errors
-        Object.keys(apiErrors).forEach((key) =>{
-          newErrors[key] = apiErrors[key][0]
-        })
+      if (err.response?.data?.errors) {
+        const apiErrors = err.response.data.errors;
+        Object.keys(apiErrors).forEach((key) => {
+          newErrors[key] = apiErrors[key][0];
+        });
       }
-      setErrors(newErrors)
+      setErrors(newErrors);
     }
-    
   };
 
   return (
@@ -110,9 +108,9 @@ const Registration = () => {
                 onFocus={() => handleFocus("username")}
                 onBlur={() => handleBlur("username")}
                 required
-                className={errors.username ? 'error_input' : ''}
+                className={errors.username ? "error_input" : ""}
               />
-              {errors.username && <p className="error_text">{errors.username}</p>}
+              <p className="error_text">{errors.username}</p>
               <span
                 className={`asterisk first_asterisk ${
                   focused["username"] || formData.username ? "hidden" : ""
@@ -131,9 +129,9 @@ const Registration = () => {
                 onBlur={() => handleBlur("email")}
                 onChange={handleChange}
                 required
-                className={errors.email ? 'error_input' : ''}
+                className={errors.email ? "error_input" : ""}
               />
-              {errors.email && <p className="error_text">{errors.email}</p>}
+              <p className="error_text">{errors.email}</p>
 
               <span
                 className={`asterisk second_asterisk ${
@@ -153,9 +151,9 @@ const Registration = () => {
                 onBlur={() => handleBlur("password")}
                 onChange={handleChange}
                 required
-                className={errors.password ? 'error_input' : ''}
+                className={errors.password ? "error_input" : ""}
               />
-              {errors.password && <p className="error_text">{errors.password}</p>}
+              <p className="error_text">{errors.password}</p>
 
               <span
                 className={`asterisk third_asterisk ${
@@ -183,9 +181,9 @@ const Registration = () => {
                 onFocus={() => handleFocus("password_confirmation")}
                 onBlur={() => handleBlur("password_confirmation")}
                 required
-                className={errors.password_confirmation ? 'error_input' : ''}
+                className={errors.password_confirmation ? "error_input" : ""}
               />
-              {errors.password_confirmation && <p className="error_text">{errors.password_confirmation}</p>}
+              <p className="error_text">{errors.password_confirmation}</p>
 
               <span
                 className={`asterisk fourth_asterisk ${
