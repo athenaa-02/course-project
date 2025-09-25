@@ -1,18 +1,9 @@
 import Header from "../../components/Header";
-import LogoutButton from "../../components/LogoutButton";
 import { useEffect, useState } from "react";
 import { getProductsInfo } from "../../services/auth";
+import RightContext2 from "../../components/RightContext2";
 
 function Products() {
-  const headerPart = (
-    <div>
-      <div>cart</div>
-      <div>avatar</div>
-     <div>
-<LogoutButton></LogoutButton>
-     </div>
-    </div>
-  );
 
 const [products, setProducts] = useState([])
 
@@ -35,7 +26,7 @@ console.log(products)
 
   return (
     <>
-      <Header rightContext={headerPart}></Header>
+      <Header rightContext={<RightContext2/>}></Header>
     </>
   );
 }

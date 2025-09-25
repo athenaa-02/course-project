@@ -1,10 +1,10 @@
 import Header from "../../components/Header";
 import { login } from "../../services/auth";
 import Button from "../../components/Button";
-import userLogo from "../../assets/userLogo.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import brandImg from "../../assets/brandImg.png";
+import RightContext from "../../components/RightContext";
 import { useNavigate } from "react-router-dom";
 import eyeLogo from "../../assets/eyeLogo.png";
 import { loginSchema } from "../../components/Validations";
@@ -17,15 +17,6 @@ function Login() {
   const [focused, setFocused] = useState({});
   const handleFocus = (name) => setFocused({ ...focused, [name]: true });
   const handleBlur = (name) => setFocused({ ...focused, [name]: false });
-
-  const headerPart = (
-    <div className="user_wrapper">
-      <img src={userLogo} alt="" />
-      <Link className="login_link" to={"/"}>
-        log in
-      </Link>
-    </div>
-  );
 
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -73,7 +64,7 @@ function Login() {
   };
   return (
     <>
-      <Header rightContext={headerPart}></Header>
+      <Header rightContext={<RightContext/>}></Header>
       <main style={{ display: "flex" }}>
         <aside className="img_aside">
           <img src={brandImg} alt="" />

@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { register } from "../../services/auth";
 import brandImg from "../../assets/brandImg.png";
-import userLogo from "../../assets/userLogo.png";
 import Header from "../../components/Header";
 import eyeLogo from "../../assets/eyeLogo.png";
 import { Link } from "react-router-dom";
+import RightContext from "../../components/RightContext";
 import { validationSchema } from "../../components/Validations";
 import ImageUpload from "../../components/ImageUpload/ImageUpload";
 
@@ -16,14 +16,7 @@ const Registration = () => {
 
   const [errors, setErrors] = useState({});
 
-  const headerPart = (
-    <div className="user_wrapper">
-      <img src={userLogo} alt="" />
-      <Link className="login_link" to={"/"}>
-        log in
-      </Link>
-    </div>
-  );
+
 
   const [focused, setFocused] = useState({});
   const handleFocus = (name) => setFocused({ ...focused, [name]: true });
@@ -86,7 +79,7 @@ const Registration = () => {
 
   return (
     <>
-      <Header rightContext={headerPart}></Header>
+      <Header rightContext={<RightContext/>}></Header>
       <main style={{ display: "flex" }}>
         <aside className="img_aside">
           <img src={brandImg} alt="" />
