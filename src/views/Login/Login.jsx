@@ -6,11 +6,13 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import brandImg from "../../assets/brandImg.png";
 import { useNavigate } from "react-router-dom";
-import eyeLogo from '../../assets/eyeLogo.png'
+import eyeLogo from "../../assets/eyeLogo.png";
+import { loginSchema } from "../../components/Validations";
 
 function Login() {
+  const [showPassword, setShowPassword] = useState(false);
 
-  const [showPassword, setShowPassword] = useState(false)
+  const [errors, setErrors] = useState({});
 
   const [focused, setFocused] = useState({});
   const handleFocus = (name) => setFocused({ ...focused, [name]: true });
@@ -41,12 +43,32 @@ function Login() {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
+      await loginSchema.validate(formData, { abortEarly: false });
+      setErrors({});
       const response = await login(formData);
       console.log("login success:", response.data);
       localStorage.setItem("token", response.data.token);
       navigate("/products");
-    } catch (error) {
-      console.error("login failed: ", error.response?.data || error.message);
+    } catch (err) {
+      console.error("API Error:", err.response?.data || err);
+      const newErrors = {};
+      if (err.inner) {
+        err.inner.forEach((e) => {
+          newErrors[e.path] = e.message;
+        });
+      }
+
+      if (err.response?.data?.errors) {
+        const apiErrors = err.response.data.errors;
+        Object.keys(apiErrors).forEach((key) => {
+          newErrors[key] = apiErrors[key][0];
+        });
+      }
+      if(err.response?.data?.message){
+        newErrors.general = err.response.data.message
+      }
+      setErrors(newErrors);
+      console.log("Mapped errors:", newErrors);
     }
   };
   return (
@@ -68,8 +90,10 @@ function Login() {
                 onFocus={() => handleFocus("email")}
                 placeholder={`${focused["email"] ? "" : "Email"}`}
                 onBlur={() => handleBlur("email")}
+                className={errors.general ? "error_input" : ""}
                 required
               />
+              <p className="error_text">{errors.general}</p>
               <span
                 className={`asterisk second_asterisk ${
                   focused["email"] || formData.email ? "hidden" : ""
@@ -80,15 +104,17 @@ function Login() {
             </div>
             <div className="input_wrapper">
               <input
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 name="password"
                 value={formData.password}
                 placeholder={`${focused["password"] ? "" : "password"}`}
                 onChange={handleChange}
                 onFocus={() => handleFocus("password")}
                 onBlur={() => handleBlur("password")}
+                className={errors.general ? "error_input" : ""}
                 required
               />
+              <p className="error_text">{errors.general}</p>
               <span
                 className={`asterisk third_asterisk ${
                   focused["password"] || formData.password ? "hidden" : ""
@@ -96,8 +122,11 @@ function Login() {
               >
                 *
               </span>
-              <img onClick={() => setShowPassword(!showPassword)} src={eyeLogo} alt="" />
-
+              <img
+                onClick={() => setShowPassword(!showPassword)}
+                src={eyeLogo}
+                alt=""
+              />
             </div>
             <Button type="submit">Log in</Button>
           </form>

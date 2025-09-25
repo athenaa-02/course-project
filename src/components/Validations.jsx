@@ -15,3 +15,8 @@ export const validationSchema = Yup.object().shape({
     .oneOf([Yup.ref("password"), null], "Passwords must match"),
   avatar: Yup.mixed().nullable(),
 });
+
+export const loginSchema = Yup.object().shape({
+  email: Yup.string().required('email is required').email("Invalid email format"),
+  password: Yup.string().required('password is required')
+})

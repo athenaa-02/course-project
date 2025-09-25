@@ -79,8 +79,10 @@ const Registration = () => {
         });
       }
       setErrors(newErrors);
+      
     }
   };
+  
 
   return (
     <>
