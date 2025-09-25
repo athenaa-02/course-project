@@ -158,9 +158,13 @@ span {
 .logout_button_wrapper {
   cursor: pointer;
   position: relative;
+  width: 15px;
+  height: 15px;
+  background-repeat: no-repeat;
+  background-image: url(./assets/downArrow.png);
 }
 .log_out_btn {
   position: absolute;
-  display: none;
-
+top: 20px;
 }
+
