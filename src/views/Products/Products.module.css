@@ -1,0 +1,30 @@
+.products_header{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 100px;
+}
+.products_header_right{
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    figure{
+        margin: 0;
+        height: 14px;
+        width: 2px;
+        background-color: #E1DFE1;
+    }
+    
+}
+
+.filter_menu{
+    display: flex;
+    align-items: center;
+    gap: 11.75px;
+    cursor: pointer;
+}
+.sort_menu{
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    cursor: pointer;
+}
