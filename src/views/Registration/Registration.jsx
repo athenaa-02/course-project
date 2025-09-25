@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import RightContext from "../../components/RightContext";
 import { validationSchema } from "../../components/Validations";
 import ImageUpload from "../../components/ImageUpload/ImageUpload";
+import { User } from "lucide-react";
 
 const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -54,6 +55,7 @@ const Registration = () => {
       setErrors({});
       const response = await register(formDataToSend);
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user", JSON.stringify(response.data.user))
       console.log("success:", response.data);
       navigate("/products");
     } catch (err) {

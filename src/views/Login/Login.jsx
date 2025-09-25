@@ -39,6 +39,8 @@ function Login() {
       const response = await login(formData);
       console.log("login success:", response.data);
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user", JSON.stringify(response.data.user))
+      console.log(response.data.user);
       navigate("/products");
     } catch (err) {
       console.error("API Error:", err.response?.data || err);

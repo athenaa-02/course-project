@@ -154,17 +154,32 @@ span {
 .right_context2 {
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 .logout_button_wrapper {
-  cursor: pointer;
   position: relative;
   width: 15px;
   height: 15px;
   background-repeat: no-repeat;
+  background-position: center;
   background-image: url(./assets/downArrow.png);
 }
 .log_out_btn {
+  cursor: pointer;
   position: absolute;
-top: 20px;
+  top: 20px;
+  width: 80px;
+  height: 25px;
 }
 
+.small_menu_avatar {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.small_menu_cart{
+  cursor: pointer;
+  width: 20.9px;
+  height: 19.5px;
+}
