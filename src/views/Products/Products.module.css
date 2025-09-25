@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-between;
     padding: 0 100px;
+    margin: 72px 0 0 0 ;
 }
 .products_header_right{
     display: flex;
@@ -20,7 +21,7 @@
     display: flex;
     align-items: center;
     gap: 11.75px;
-    cursor: pointer;
+    position: relative;
 }
 .sort_menu{
     display: flex;
@@ -28,3 +29,34 @@
     gap: 9px;
     cursor: pointer;
 }
+h3{
+    font-size: 42px;
+    font-weight: 600;
+    color: #10151F;
+    margin: 0;
+}
+.filter_by_price{
+    position: absolute;
+    background-color: white;
+    width: 392px;
+    height: 169px;
+    display: flex;
+    border-radius: 8px;
+    flex-direction: column;
+    p{
+        font-weight: 600;
+        font-size: 16px;
+        color: #10151F;
+    }
+}
+button.apply{
+    width: 124px;
+    height: 41px;
+    align-self: flex-end;
+    margin-top: 10px;
+}
+.wrapper{
+    gap: 10px;
+    position: relative;
+}
+

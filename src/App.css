@@ -113,12 +113,6 @@ span {
 
 .input_wrapper {
   position: relative;
-  .asterisk {
-    color: red;
-    position: absolute;
-    top: 10px;
-    left: 90px;
-  }
   .second_asterisk {
     left: 57px;
   }
@@ -128,9 +122,6 @@ span {
   .fourth_asterisk {
     left: 147px;
   }
-  .hidden {
-    display: none;
-  }
   img {
     position: absolute;
     right: 13.65px;
@@ -138,6 +129,23 @@ span {
     cursor: pointer;
   }
 }
+.asterisk {
+    color: red;
+    position: absolute;
+    top: 10px;
+    left: 90px;
+  }
+  .from_asterisk{
+    bottom: 10px;
+    left: 52px;
+}
+.to_asterisk{
+  bottom:10px;
+  left: 220px;
+}
+  .hidden {
+    display: none;
+  }
 
 .error_text {
   color: #ff4000;
