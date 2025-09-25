@@ -9,7 +9,7 @@ import styles from "./Products.module.css";
 function Products() {
   const [focused, setFocused] = useState({ from: false, to: false });
   const [products, setProducts] = useState([]);
-  const [values, setValues] = useState({from: '', to: ''})
+  const [values, setValues] = useState({ from: "", to: "" });
 
   const handleFocus = (name) => setFocused({ ...focused, [name]: true });
   const handleBlur = (name) => setFocused({ ...focused, [name]: false });
@@ -46,23 +46,49 @@ function Products() {
                 <input
                   type="number"
                   value={values.from}
-                  onChange={(e) => setValues({...values, from: e.target.value})}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    if (val.length > 1 && val.startsWith("0")) return;
+                    setValues({ ...values, from: val });
+                  }}
+                  onKeyDown={(e) => {
+                    if (["e", "E", "+"].includes(e.key)) {
+                      e.preventDefault();
+                    }
+                  }}
                   placeholder={focused["from"] ? "" : "From"}
                   onFocus={() => handleFocus("from")}
                   onBlur={() => handleBlur("from")}
                 />
-                <span className={`asterisk from_asterisk ${focused.from || values.from ? "hidden" : ""}`}>
+                <span
+                  className={`asterisk from_asterisk ${
+                    focused.from || values.from ? "hidden" : ""
+                  }`}
+                >
                   *
                 </span>
                 <input
                   type="number"
                   value={values.to}
-                  onChange={(e) => setValues({...values, to: e.target.value})}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    if (val.length > 1 && val.startsWith("0")) return;
+                    setValues({ ...values, to: val });
+                  }}
+                  onKeyDown={(e) => {
+                    if (["e", "E", "+"].includes(e.key)) {
+                      e.preventDefault();
+                    }
+                  }}
                   placeholder={focused["to"] ? "" : "To"}
                   onFocus={() => handleFocus("to")}
                   onBlur={() => handleBlur("to")}
                 />
-                <span className={`asterisk to_asterisk ${focused.to || values.to ? "hidden" : ""}`}>
+                <span
+                  className={`asterisk to_asterisk ${
+                    focused.to || values.to ? "hidden" : ""
+                  }`}
+                >
                   *
                 </span>
               </div>
