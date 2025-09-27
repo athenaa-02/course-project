@@ -41,7 +41,7 @@ function Products() {
       const response = await instance.get(url);
       setProducts(response.data.data);
       setGeneralData(response.data);
-      setTotalPages(response.data.meta.last_page);
+      setTotalPages(response.data.meta?.last_page);
       console.log("products fetched:", response.data);
     } catch (error) {
       console.log("error fetching products:", error);
@@ -87,8 +87,8 @@ function Products() {
         <div className={styles.products_header_right}>
           <span>
             showing{" "}
-            <span>{`${generalData.meta.current_page}-${generalData.meta.last_page}`}</span>{" "}
-            of <span>{generalData.meta.total}</span> results
+            <span>{`${generalData.meta?.current_page}-${generalData.meta?.last_page}`}</span>{" "}
+            of <span>{generalData.meta?.total}</span> results
           </span>
           <figure></figure>
           <div className={styles.filter_menu} onClick={handleShowFilter}>
