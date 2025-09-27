@@ -231,3 +231,37 @@ span {
 
 }
 
+/* pagination */
+.pagination {
+  display: flex;
+  list-style: none; /* remove bullets */
+  gap: 8px; /* spacing between pages */
+  justify-content: center;
+  padding: 0;
+  height: 32px;
+  margin-top: 90px;
+  color: #10151F;
+
+}
+
+.page-item {
+  display: inline-block;
+}
+
+.page-link {
+padding: 4px 11px;
+  border: 1px solid #F8F6F7;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #7A8086;
+}
+
+.page-link:hover {
+  background-color: #f0f0f0;
+}
+
+.active .page-link {
+  color: #FF4000;
+  border: 1px solid #FF4000;
+}

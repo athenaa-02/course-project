@@ -219,6 +219,7 @@ function Products() {
 
       {/* products */}
       <main className={styles.products_main}>
+        <div className={styles.wrapper}>
         {products.length > 0 ? (
           products.map((product) => (
             <div key={product.id} className={styles.product_card}>
@@ -230,6 +231,7 @@ function Products() {
         ) : (
           <p>No products found</p>
         )}
+        </div>
         <PaginatedItems currentPage={setPage} totalPages={totalPages} />
       </main>
     </>
