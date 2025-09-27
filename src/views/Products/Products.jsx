@@ -1,17 +1,18 @@
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
-import { getProductsInfo } from "../../services/auth";
 import RightContext2 from "../../components/RightContext2";
 import filterLogo from "../../assets/filterLogo.png";
 import downArrow from "../../assets/downArrow.png";
 import styles from "./Products.module.css";
+import instance from "../../services/axios";
 
 function Products() {
   const [focused, setFocused] = useState({ from: false, to: false });
   const [products, setProducts] = useState([]);
-  const [values, setValues] = useState({ from: "", to: "" });
   const [showFilter, setShowFilter] = useState(false);
   const [showSort, setShowSort] = useState(false);
+  const [values, setValues] = useState({ from: "", to: "" });
+  const [sortType, setSortType] = useState(null);
 
   const handleFocus = (name) => setFocused({ ...focused, [name]: true });
   const handleBlur = (name) => setFocused({ ...focused, [name]: false });
@@ -24,18 +25,42 @@ function Products() {
     setShowSort((prev) => !prev);
     setShowFilter(false);
   };
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     try {
-  //       const response = await getProductsInfo();
-  //       setProducts(response.data);
-  //     } catch (error) {
-  //       console.log("error fetching products:", error);
-  //     }
-  //   };
-  //   fetchProducts();
-  // }, []);
-  // console.log(products);
+
+  const fetchProducts = async () => {
+    try {
+      // let url = "/products?";
+      const params = new URLSearchParams();
+
+      if (sortType === "newest") params.append("sort", "created_at");
+      if (sortType === "priceLowToHigh") params.append("sort", "price");
+      if (sortType === "priceHighToLow") params.append("sort", "-price");
+
+      if (values.from) {
+        params.append("filter[price_from]", values.from);
+      } else {
+        params.append("filter[price_from]", "0");
+      }
+      if (values.to) {
+        params.append("filter[price_to]", values.to);
+      } else {
+        params.append("filter[price_to]", Number.MAX_SAFE_INTEGER);
+      }
+
+      const url = `/products?${params.toString()}`;
+
+      console.log("fetching products with url:", url);
+
+      const response = await instance.get(url);
+      setProducts(response.data.data);
+      console.log("products fetched:", products);
+    } catch (error) {
+      console.log("error fetching products:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   return (
     <>
@@ -44,12 +69,12 @@ function Products() {
         <h3>Products</h3>
         <div className={styles.products_header_right}>
           <span>
-            showing <span>1-10</span> of <span>100</span>results
+            showing <span>1-10</span> of <span>100</span> results
           </span>
           <figure></figure>
           <div className={styles.filter_menu} onClick={handleShowFilter}>
-              <img src={filterLogo} />
-              <span>Filter</span>
+            <img src={filterLogo} />
+            <span>Filter</span>
             <div
               className={`${styles.filter_by_price} ${
                 showFilter ? "" : styles.hidden
@@ -107,7 +132,9 @@ function Products() {
                   *
                 </span>
               </div>
-              <button className={styles.apply}>Apply</button>
+              <button className={styles.apply} onClick={fetchProducts}>
+                Apply
+              </button>
             </div>
           </div>
           <div className={styles.sort_menu} onClick={handleShowSort}>
@@ -121,9 +148,30 @@ function Products() {
               onClick={(e) => e.stopPropagation()}
             >
               <p>Sort by</p>
-              <button>New products first</button>
-              <button>Price, low to high</button>
-              <button>Price, high to low</button>
+              <button
+                onClick={() => {
+                  setSortType("newest");
+                  fetchProducts();
+                }}
+              >
+                New products first
+              </button>
+              <button
+                onClick={() => {
+                  setSortType("priceLowToHigh");
+                  fetchProducts();
+                }}
+              >
+                Price, low to high
+              </button>
+              <button
+                onClick={() => {
+                  setSortType("priceHighToLow");
+                  fetchProducts();
+                }}
+              >
+                Price, high to low
+              </button>
             </div>
           </div>
         </div>
