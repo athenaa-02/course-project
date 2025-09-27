@@ -14,6 +14,9 @@ function Products() {
   const [values, setValues] = useState({ from: "", to: "" });
   const [sortType, setSortType] = useState(null);
 
+  const [activeFilter, setActiveFilter] = useState(false);
+  const [activeSort, setActiveSort] = useState(false);
+
   const handleFocus = (name) => setFocused({ ...focused, [name]: true });
   const handleBlur = (name) => setFocused({ ...focused, [name]: false });
 
@@ -132,7 +135,17 @@ function Products() {
                   *
                 </span>
               </div>
-              <button className={styles.apply} onClick={fetchProducts}>
+              <button
+                className={styles.apply}
+                onClick={() => {
+                  if (values.from || values.to) {
+                    setActiveFilter(
+                      ` price: ${values.from || 0}-${values.to || "∞"}`
+                    );
+                    fetchProducts();
+                  }
+                }}
+              >
                 Apply
               </button>
             </div>
@@ -151,6 +164,7 @@ function Products() {
               <button
                 onClick={() => {
                   setSortType("newest");
+                  setActiveSort("New products first");
                   fetchProducts();
                 }}
               >
@@ -159,6 +173,7 @@ function Products() {
               <button
                 onClick={() => {
                   setSortType("priceLowToHigh");
+                  setActiveSort("Price, low to high");
                   fetchProducts();
                 }}
               >
@@ -167,6 +182,7 @@ function Products() {
               <button
                 onClick={() => {
                   setSortType("priceHighToLow");
+                  setActiveSort("Price, high to low");
                   fetchProducts();
                 }}
               >
