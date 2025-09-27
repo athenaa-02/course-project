@@ -139,22 +139,22 @@ span {
   }
 }
 .asterisk {
-    color: red;
-    position: absolute;
-    top: 10px;
-    left: 90px;
-  }
-  .from_asterisk{
-    bottom: 10px;
-    left: 53px;
+  color: red;
+  position: absolute;
+  top: 10px;
+  left: 90px;
 }
-.to_asterisk{
-  bottom:10px;
+.from_asterisk {
+  bottom: 10px;
+  left: 53px;
+}
+.to_asterisk {
+  bottom: 10px;
   left: 220px;
 }
-  .hidden {
-    display: none;
-  }
+.hidden {
+  display: none;
+}
 
 .error_text {
   color: #ff4000;
@@ -195,8 +195,36 @@ span {
   height: 40px;
   border-radius: 50%;
 }
-.small_menu_cart{
+.small_menu_cart {
   cursor: pointer;
   width: 20.9px;
   height: 19.5px;
+}
+
+/* filter chips */
+.active_chips {
+  display: flex;
+  gap: 10px;
+  margin-top: 19px;
+}
+
+.filter_chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-size: 14px;
+  color: #3E424A;
+}
+
+.filter_chip button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #3E424A;
+  padding-bottom: 4px;
+
 }

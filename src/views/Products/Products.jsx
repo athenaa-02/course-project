@@ -5,6 +5,7 @@ import filterLogo from "../../assets/filterLogo.png";
 import downArrow from "../../assets/downArrow.png";
 import styles from "./Products.module.css";
 import instance from "../../services/axios";
+import FilterChips from "../../components/FilterChips";
 
 function Products() {
   const [focused, setFocused] = useState({ from: false, to: false });
@@ -16,6 +17,16 @@ function Products() {
 
   const [activeFilter, setActiveFilter] = useState(false);
   const [activeSort, setActiveSort] = useState(false);
+
+  const clearFilters = (type) => {
+    if (type === "filter") {
+      setValues({ from: "", to: "" });
+    }
+    if (type === "sort") {
+      setSortType(null);
+    }
+    fetchProducts();
+  };
 
   const handleFocus = (name) => setFocused({ ...focused, [name]: true });
   const handleBlur = (name) => setFocused({ ...focused, [name]: false });
@@ -192,6 +203,14 @@ function Products() {
           </div>
         </div>
       </div>
+
+      <FilterChips
+        activeFilter={activeFilter}
+        setActiveFilter={setActiveFilter}
+        activeSort={activeSort}
+        setActiveSort={setActiveSort}
+        clearFilters={clearFilters}
+      ></FilterChips>
     </>
   );
 }
