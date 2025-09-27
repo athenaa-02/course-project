@@ -14,6 +14,7 @@ function Products() {
   const [showSort, setShowSort] = useState(false);
   const [values, setValues] = useState({ from: "", to: "" });
   const [sortType, setSortType] = useState(null);
+  const [generalData, setGeneralData] = useState({});
 
   const [activeFilter, setActiveFilter] = useState(false);
   const [activeSort, setActiveSort] = useState(false);
@@ -67,11 +68,13 @@ function Products() {
 
       const response = await instance.get(url);
       setProducts(response.data.data);
-      console.log("products fetched:", products);
+      setGeneralData(response.data);
+      console.log("products fetched:", response.data);
     } catch (error) {
       console.log("error fetching products:", error);
     }
   };
+  console.log(generalData.meta.total);
 
   useEffect(() => {
     fetchProducts();
@@ -87,7 +90,7 @@ function Products() {
         <h3>Products</h3>
         <div className={styles.products_header_right}>
           <span>
-            showing <span>1-10</span> of <span>100</span> results
+            showing <span>{`${generalData.meta.current_page}-${generalData.meta.last_page}`}</span> of <span>{generalData.meta.total}</span> results
           </span>
           <figure></figure>
           <div className={styles.filter_menu} onClick={handleShowFilter}>
