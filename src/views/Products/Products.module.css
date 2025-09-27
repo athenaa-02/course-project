@@ -100,4 +100,8 @@ button.apply {
     color: #10151f;
     background-color: white;
   }
+
 }
+  .hidden_sort {
+    display: none !important;
+  }

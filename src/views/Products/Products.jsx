@@ -10,15 +10,20 @@ function Products() {
   const [focused, setFocused] = useState({ from: false, to: false });
   const [products, setProducts] = useState([]);
   const [values, setValues] = useState({ from: "", to: "" });
-  const [showMenu, setShowMenu] = useState(false);
+  const [showFilter, setShowFilter] = useState(false);
+  const [showSort, setShowSort] = useState(false);
 
   const handleFocus = (name) => setFocused({ ...focused, [name]: true });
   const handleBlur = (name) => setFocused({ ...focused, [name]: false });
 
-  const handleShowFilter = (e) => {
-    setShowMenu((prev) => !prev);
+  const handleShowFilter = () => {
+    setShowFilter((prev) => !prev);
+    setShowSort(false);
   };
-
+  const handleShowSort = () => {
+    setShowSort((prev) => !prev);
+    setShowFilter(false);
+  };
   // useEffect(() => {
   //   const fetchProducts = async () => {
   //     try {
@@ -43,11 +48,11 @@ function Products() {
           </span>
           <figure></figure>
           <div className={styles.filter_menu} onClick={handleShowFilter}>
-            <img src={filterLogo} />
-            <span>Filter</span>
+              <img src={filterLogo} />
+              <span>Filter</span>
             <div
               className={`${styles.filter_by_price} ${
-                showMenu ? "" : styles.hidden
+                showFilter ? "" : styles.hidden
               }`}
               onClick={(e) => e.stopPropagation()}
             >
@@ -105,12 +110,15 @@ function Products() {
               <button className={styles.apply}>Apply</button>
             </div>
           </div>
-          <div className={styles.sort_menu}>
+          <div className={styles.sort_menu} onClick={handleShowSort}>
             <span>Sort by</span>
             <img src={downArrow} alt="" />
+
             <div
-              className={styles.sort_dropdown}
-              onDoubleClick={(e) => e.stopPropagation()}
+              className={`${styles.sort_dropdown} ${
+                showSort ? "" : styles.hidden_sort
+              }`}
+              onClick={(e) => e.stopPropagation()}
             >
               <p>Sort by</p>
               <button>New products first</button>
