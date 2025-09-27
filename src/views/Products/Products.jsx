@@ -21,9 +21,11 @@ function Products() {
   const clearFilters = (type) => {
     if (type === "filter") {
       setValues({ from: "", to: "" });
+      setActiveFilter(null);
     }
     if (type === "sort") {
       setSortType(null);
+      setActiveSort(null);
     }
     fetchProducts();
   };
@@ -75,8 +77,8 @@ function Products() {
     fetchProducts();
   }, []);
   useEffect(() => {
-  fetchProducts();
-}, [sortType]);
+    fetchProducts();
+  }, [sortType]);
 
   return (
     <>
@@ -190,7 +192,6 @@ function Products() {
                   setSortType("priceLowToHigh");
                   setActiveSort("Price, low to high");
                   setShowSort(false);
-
                 }}
               >
                 Price, low to high
@@ -211,9 +212,7 @@ function Products() {
 
       <FilterChips
         activeFilter={activeFilter}
-        setActiveFilter={setActiveFilter}
         activeSort={activeSort}
-        setActiveSort={setActiveSort}
         clearFilters={clearFilters}
       ></FilterChips>
 

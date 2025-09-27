@@ -1,32 +1,17 @@
-
-function FilterChips({ activeFilter, setActiveFilter, activeSort, setActiveSort, clearFilters }) {
+function FilterChips({ activeFilter, activeSort, clearFilters }) {
   return (
-    <div className='active_chips'>
+    <div className="active_chips">
       {activeFilter && (
-        <div className='filter_chip'>
+        <div className="filter_chip">
           <span>{activeFilter}</span>
-          <button
-            onClick={() => {
-              setActiveFilter(null);
-              clearFilters("filter");
-            }}
-          >
-            x
-          </button>
+          <button onClick={() => clearFilters("filter")}>x</button>
         </div>
       )}
 
       {activeSort && (
-        <div className='filter_chip'>
+        <div className="filter_chip">
           <span>{activeSort}</span>
-          <button
-            onClick={() => {
-              setActiveSort(null);
-              clearFilters("sort");
-            }}
-          >
-            x
-          </button>
+          <button onClick={() => clearFilters("sort")}>x</button>
         </div>
       )}
     </div>
