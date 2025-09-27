@@ -6,6 +6,7 @@ import downArrow from "../../assets/downArrow.png";
 import styles from "./Products.module.css";
 import instance from "../../services/axios";
 import FilterChips from "../../components/FilterChips";
+import PaginatedItems from "../../components/pagination.jsx";
 
 function Products() {
   const [focused, setFocused] = useState({ from: false, to: false });
@@ -18,6 +19,34 @@ function Products() {
 
   const [activeFilter, setActiveFilter] = useState(false);
   const [activeSort, setActiveSort] = useState(false);
+
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const fetchProducts = async () => {
+    try {
+      const params = new URLSearchParams();
+
+      if (sortType === "newest") params.append("sort", "created_at");
+      if (sortType === "priceLowToHigh") params.append("sort", "price");
+      if (sortType === "priceHighToLow") params.append("sort", "-price");
+
+      params.append("filter[price_from]", values.from || "0");
+      params.append("filter[price_to]", values.to || Number.MAX_SAFE_INTEGER);
+
+      params.append("page", page);
+
+      const url = `/products?${params.toString()}`;
+
+      const response = await instance.get(url);
+      setProducts(response.data.data);
+      setGeneralData(response.data);
+      setTotalPages(response.data.meta.last_page);
+      console.log("products fetched:", response.data);
+    } catch (error) {
+      console.log("error fetching products:", error);
+    }
+  };
 
   const clearFilters = (type) => {
     if (type === "filter") {
@@ -43,45 +72,12 @@ function Products() {
     setShowFilter(false);
   };
 
-  const fetchProducts = async () => {
-    try {
-      const params = new URLSearchParams();
-
-      if (sortType === "newest") params.append("sort", "created_at");
-      if (sortType === "priceLowToHigh") params.append("sort", "price");
-      if (sortType === "priceHighToLow") params.append("sort", "-price");
-
-      if (values.from) {
-        params.append("filter[price_from]", values.from);
-      } else {
-        params.append("filter[price_from]", "0");
-      }
-      if (values.to) {
-        params.append("filter[price_to]", values.to);
-      } else {
-        params.append("filter[price_to]", Number.MAX_SAFE_INTEGER);
-      }
-
-      const url = `/products?${params.toString()}`;
-
-      console.log("fetching products with url:", url);
-
-      const response = await instance.get(url);
-      setProducts(response.data.data);
-      setGeneralData(response.data);
-      console.log("products fetched:", response.data);
-    } catch (error) {
-      console.log("error fetching products:", error);
-    }
-  };
-  console.log(generalData.meta.total);
-
   useEffect(() => {
     fetchProducts();
   }, []);
   useEffect(() => {
     fetchProducts();
-  }, [sortType]);
+  }, [sortType, page]);
 
   return (
     <>
@@ -90,7 +86,9 @@ function Products() {
         <h3>Products</h3>
         <div className={styles.products_header_right}>
           <span>
-            showing <span>{`${generalData.meta.current_page}-${generalData.meta.last_page}`}</span> of <span>{generalData.meta.total}</span> results
+            showing{" "}
+            <span>{`${generalData.meta.current_page}-${generalData.meta.last_page}`}</span>{" "}
+            of <span>{generalData.meta.total}</span> results
           </span>
           <figure></figure>
           <div className={styles.filter_menu} onClick={handleShowFilter}>
@@ -232,6 +230,7 @@ function Products() {
         ) : (
           <p>No products found</p>
         )}
+        <PaginatedItems currentPage={setPage} totalPages={totalPages} />
       </main>
     </>
   );
