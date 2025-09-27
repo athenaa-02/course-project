@@ -16,6 +16,7 @@
   }
 }
 
+/* filter */
 .filter_menu {
   display: flex;
   align-items: center;
@@ -23,12 +24,7 @@
   position: relative;
   cursor: pointer;
 }
-.sort_menu {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  cursor: pointer;
-}
+
 h3 {
   font-size: 42px;
   font-weight: 600;
@@ -53,7 +49,7 @@ h3 {
     color: #10151f;
     margin-top: 0;
   }
-  input{
+  input {
     width: 175px;
   }
 }
@@ -68,6 +64,40 @@ button.apply {
   gap: 10px;
   position: relative;
 }
-.hidden{
-    display: none;
+.hidden {
+  display: none;
+}
+
+/* sort */
+.sort_menu {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  cursor: pointer;
+  position: relative;
+}
+.sort_dropdown {
+  width: 223px;
+  height: 184px;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #e1dfe1;
+  position: absolute;
+  top: 35px;
+  padding: 16px 16px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+
+  p {
+    margin: 0;
+    color: #10151f;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  button {
+    color: #10151f;
+    background-color: white;
+  }
 }

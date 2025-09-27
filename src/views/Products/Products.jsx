@@ -10,14 +10,14 @@ function Products() {
   const [focused, setFocused] = useState({ from: false, to: false });
   const [products, setProducts] = useState([]);
   const [values, setValues] = useState({ from: "", to: "" });
-  const [showMenu, setShowMenu] = useState(false)
+  const [showMenu, setShowMenu] = useState(false);
 
   const handleFocus = (name) => setFocused({ ...focused, [name]: true });
   const handleBlur = (name) => setFocused({ ...focused, [name]: false });
 
-const handleShowFilter = () => {
-setShowMenu((prev) => !prev)
-}
+  const handleShowFilter = (e) => {
+    setShowMenu((prev) => !prev);
+  };
 
   // useEffect(() => {
   //   const fetchProducts = async () => {
@@ -45,7 +45,12 @@ setShowMenu((prev) => !prev)
           <div className={styles.filter_menu} onClick={handleShowFilter}>
             <img src={filterLogo} />
             <span>Filter</span>
-            <div className={`${styles.filter_by_price} ${showMenu ? "" : styles.hidden}`}>
+            <div
+              className={`${styles.filter_by_price} ${
+                showMenu ? "" : styles.hidden
+              }`}
+              onClick={(e) => e.stopPropagation()}
+            >
               <p>Select price</p>
               <div className={styles.wrapper}>
                 <input
@@ -103,6 +108,15 @@ setShowMenu((prev) => !prev)
           <div className={styles.sort_menu}>
             <span>Sort by</span>
             <img src={downArrow} alt="" />
+            <div
+              className={styles.sort_dropdown}
+              onDoubleClick={(e) => e.stopPropagation()}
+            >
+              <p>Sort by</p>
+              <button>New products first</button>
+              <button>Price, low to high</button>
+              <button>Price, high to low</button>
+            </div>
           </div>
         </div>
       </div>
