@@ -42,7 +42,6 @@ function Products() {
 
   const fetchProducts = async () => {
     try {
-      // let url = "/products?";
       const params = new URLSearchParams();
 
       if (sortType === "newest") params.append("sort", "created_at");
@@ -75,6 +74,9 @@ function Products() {
   useEffect(() => {
     fetchProducts();
   }, []);
+  useEffect(() => {
+  fetchProducts();
+}, [sortType]);
 
   return (
     <>
@@ -153,6 +155,8 @@ function Products() {
                     setActiveFilter(
                       ` price: ${values.from || 0}-${values.to || "∞"}`
                     );
+                    setShowFilter(false);
+
                     fetchProducts();
                   }
                 }}
@@ -176,7 +180,7 @@ function Products() {
                 onClick={() => {
                   setSortType("newest");
                   setActiveSort("New products first");
-                  fetchProducts();
+                  setShowSort(false);
                 }}
               >
                 New products first
@@ -185,7 +189,8 @@ function Products() {
                 onClick={() => {
                   setSortType("priceLowToHigh");
                   setActiveSort("Price, low to high");
-                  fetchProducts();
+                  setShowSort(false);
+
                 }}
               >
                 Price, low to high
@@ -194,7 +199,7 @@ function Products() {
                 onClick={() => {
                   setSortType("priceHighToLow");
                   setActiveSort("Price, high to low");
-                  fetchProducts();
+                  setShowSort(false);
                 }}
               >
                 Price, high to low
@@ -211,6 +216,21 @@ function Products() {
         setActiveSort={setActiveSort}
         clearFilters={clearFilters}
       ></FilterChips>
+
+      {/* products */}
+      <main className={styles.products_main}>
+        {products.length > 0 ? (
+          products.map((product) => (
+            <div key={product.id} className={styles.product_card}>
+              <img src={product.cover_image} />
+              <h4>{product.name}</h4>
+              <p>$ {product.price}</p>
+            </div>
+          ))
+        ) : (
+          <p>No products found</p>
+        )}
+      </main>
     </>
   );
 }
