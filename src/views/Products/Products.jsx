@@ -7,8 +7,10 @@ import styles from "./Products.module.css";
 import instance from "../../services/axios";
 import FilterChips from "../../components/FilterChips";
 import PaginatedItems from "../../components/pagination.jsx";
+import { useNavigate } from "react-router-dom";
 
 function Products() {
+  const navigate = useNavigate()
   const [focused, setFocused] = useState({ from: false, to: false });
   const [products, setProducts] = useState([]);
   const [showFilter, setShowFilter] = useState(false);
@@ -87,7 +89,7 @@ function Products() {
         <div className={styles.products_header_right}>
           <span>
             showing{" "}
-            <span>{`${generalData.meta?.current_page}-${generalData.meta?.last_page}`}</span>{" "}
+            <span>{`${generalData.meta?.from}-${generalData.meta?.to}`}</span>{" "}
             of <span>{generalData.meta?.total}</span> results
           </span>
           <figure></figure>
@@ -222,7 +224,7 @@ function Products() {
         <div className={styles.wrapper}>
         {products.length > 0 ? (
           products.map((product) => (
-            <div key={product.id} className={styles.product_card}>
+            <div key={product.id} className={styles.product_card} onClick={()=>navigate(`/product/${product.id}`)}>
               <img src={product.cover_image} />
               <h4>{product.name}</h4>
               <p>$ {product.price}</p>

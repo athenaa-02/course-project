@@ -1,21 +1,15 @@
 import Header from "../../components/Header";
-import LogoutButton from "../../components/LogoutButton";
+import styles from "./Product.module.css";  
+import RightContext2 from "../../components/RightContext2";
+
+
 
 function Product() {
-  const headerPart = (
-    <div>
-      <div>cart</div>
-      <div>avatar</div>
 
-      <div>
-        <LogoutButton></LogoutButton>
-      </div>
-    </div>
-  );
 
   return (
     <>
-      <Header rightContext={headerPart}></Header>
+  <Header rightContext={<RightContext2 />}></Header>
     </>
   );
 }

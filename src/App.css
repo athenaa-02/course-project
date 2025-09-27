@@ -234,13 +234,16 @@ span {
 /* pagination */
 .pagination {
   display: flex;
-  list-style: none; /* remove bullets */
-  gap: 8px; /* spacing between pages */
+  list-style: none;
+  gap: 8px; 
   justify-content: center;
   padding: 0;
   height: 32px;
   margin-top: 90px;
   color: #10151F;
+  a{
+    cursor: pointer
+  }
 
 }
 
@@ -264,4 +267,13 @@ padding: 4px 11px;
 .active .page-link {
   color: #FF4000;
   border: 1px solid #FF4000;
+}
+.break-item {
+  display: inline-block;
+  padding: 6px 12px;
+  color: #999;
+}
+.break-link {
+  cursor: default;
+  text-decoration: none;
 }

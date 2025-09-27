@@ -33,6 +33,7 @@ h3 {
 }
 .filter_by_price {
   position: absolute;
+  z-index: 10;
   background-color: white;
   width: 392px;
   height: 169px;
@@ -83,6 +84,7 @@ button.apply {
   border-radius: 8px;
   border: 1px solid #e1dfe1;
   position: absolute;
+  z-index: 10;
   top: 35px;
   padding: 16px 16px 24px;
   display: flex;
