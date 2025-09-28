@@ -12,6 +12,7 @@ function Product() {
 const { id } = useParams();
 const [product, setProduct] = useState(null);
 const [mainImage, setMainImage] = useState(null);
+const [selectedSize, setSelectedSize] = useState(null);
 const [selectedColor, setSelectedColor] = useState(null);
 
 
@@ -96,14 +97,19 @@ return (
 </div>
 
 <div className={styles.size_wrapper}>
-  <span>Size: <span>L</span></span>
+  <span>Size: <span>{selectedSize || "Select size"}</span></span>
   <div className={styles.sizes}>
-    <button className={styles.size_picker}>XS</button>
-    <button className={styles.size_picker}>S</button>
-    <button className={styles.size_picker}>M</button>
-    <button className={styles.size_picker}>L</button>
-    <button className={styles.size_picker}>XL</button>
-
+    {product.available_sizes?.map((size, index) => (
+      <button
+        key={index}
+        className={`${styles.size_picker} ${
+          selectedSize === size ? styles.active : ""
+        }`}
+        onClick={() => setSelectedSize(size)}
+      >
+        {size}
+      </button>
+    ))}
   </div>
 
   <div className={styles.quantity_wrapper}>
