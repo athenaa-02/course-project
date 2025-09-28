@@ -3,7 +3,9 @@ import styles from "./Product.module.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import instance from "../../services/axios";
+import cartLogo from "../../assets/white_cart_logo.png";
 import RightContext2 from "../../components/RightContext2";
+import { CloudMoonRain } from "lucide-react";
 
 
 function Product() {
@@ -58,12 +60,48 @@ return (
 </aside>
 <aside className={styles.product_details}>
 <h2>{product.name}</h2>
-<p>$ {product.price}</p>
+<p className={styles.product_price}>$ {product.price}</p>
 
-<div>
-<p>Details</p>
+<div className={styles.color_wrapper}>
+  <span>Color: <span>baby pink</span></span>
+  <div className={styles.colors}>
+  <button className={styles.color_picker}></button>
+  <button className={styles.color_picker}></button>
+  <button className={styles.color_picker}></button>
+</div>
+</div>
+
+<div className={styles.size_wrapper}>
+  <span>Size: <span>L</span></span>
+  <div className={styles.sizes}>
+    <button className={styles.size_picker}>XS</button>
+    <button className={styles.size_picker}>S</button>
+    <button className={styles.size_picker}>M</button>
+    <button className={styles.size_picker}>L</button>
+    <button className={styles.size_picker}>XL</button>
+
+  </div>
+
+  <div className={styles.quantity_wrapper}>
+    <span>Quantity</span>
+<select name="" id="" >
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+</select>
+  </div>
+  <button className={styles.add_btn}><img src={cartLogo} alt="" /> Add to cart</button>
+</div>
+<figure></figure>
+
+<div className={styles.logo_wrapper}>
+<p className={styles.details}>Details</p>
 <img src={product.brand.image} alt="" />
 </div>
+<span>Brand <span>Tomm</span></span>
+<p className={styles.product_description}>{product.description}</p>
 </aside>
 </main>
   </>

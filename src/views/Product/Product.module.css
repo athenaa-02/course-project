@@ -1,14 +1,12 @@
 .product_main {
   display: flex;
-padding: 0 100px 0 100px;
-gap: 168px;
+  padding: 0 100px 0 100px;
+  gap: 168px;
 }
 
 .main_image img {
   width: 400px;
   height: auto;
-  margin-bottom: 12px;
-  border: 1px solid red;
   width: 703px;
   height: 937px;
 }
@@ -19,28 +17,151 @@ gap: 168px;
 }
 
 .thumbnail {
-  border: 2px solid red;
   border-radius: 4px;
   width: 100%;
   height: 161.33px;
-
 }
 
 .thumbnail.active {
   border-color: #007bff;
 }
 
-.listing{
-width: 100%;
-padding: 0 100px ;
-margin: 30px 0 49px 0;
-font-weight: 300;
-color: #10151F;
+.listing {
+  width: 100%;
+  padding: 0 100px;
+  margin: 30px 0 49px 0;
+  font-weight: 300;
+  color: #10151f;
 }
 
-.side_images_wrapper{
-display: flex;
-flex-direction: column;
-border: 2px solid red;
-width: 121px;
+.side_images_wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 121px;
+  row-gap: 9px;
+}
+aside.product_details {
+  width: 704px;
+  width: 704px;
+  color: #10151f;
+  h2 {
+    font-weight: 600;
+    font-size: 32px;
+    margin: 0 0 21px 0;
+  }
+  .product_price {
+    font-weight: 600;
+    font-size: 32px;
+    margin: 0 0 56px 0;
+  }
+  .color_wrapper {
+    font-weight: 400;
+    font-size: 16px;
+    margin-bottom: 53px;
+    display: flex;
+    gap: 21px;
+    flex-direction: column;
+  }
+  span {
+    font-weight: 400;
+    font-size: 16px;
+  }
+  .color_picker {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: red;
+    border: 2px solid blue;
+  }
+  .colors {
+    display: flex;
+    gap: 18px;
+  }
+  figure {
+    margin: 56px 0 71.5px 0;
+    height: 1px;
+    width: 100%;
+    background-color: #e1dfe1;
+  }
+  .details {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+  }
+}
+
+.sizes {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  margin-bottom: 48px;
+}
+
+.quantity_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 16px;
+  width: 70px;
+  select {
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    align-items: center;
+    padding: 8px 14px;
+    background: url("../../assets/downArrow.png");
+    background-repeat: no-repeat;
+    gap: 9px;
+    cursor: pointer;
+    border: 1px solid #e1dfe1;
+    outline: none;
+    appearance: none;
+    background-position: right 15px center;
+    background-size: 10px 5.7px;
+  }
+  option {
+    font-size: 16px;
+  }
+}
+.add_btn {
+  width: 100%;
+  margin-top: 56px;
+  height: 59px;
+}
+.logo_wrapper {
+  display: flex;
+  justify-content: space-between;
+  height: 61px;
+  align-items: center;
+  gap: 7px;
+  img {
+    height: 61px;
+  }
+}
+.details {
+  color: #10151f;
+  font-weight: 500;
+  font-size: 20px;
+}
+.product_description {
+  color: #3e424a;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+button.size_picker {
+  width: 70px;
+  height: 42px;
+  background-color: white;
+  color: #10151f;
+  font-size: 16px;
+  font-weight: 400;
+  border: 1px solid #e1dfe1;
+}
+
+button.add_btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
 }
