@@ -130,11 +130,11 @@
   }
 }
 .items_list {
-  max-height: 450px; 
+  max-height: 450px;
   overflow-y: auto;
   overflow-x: hidden;
   padding-right: 5px;
-    box-sizing: content-box; 
+  box-sizing: content-box;
 }
 .items_list::-webkit-scrollbar {
   width: 6px;
@@ -147,20 +147,19 @@
   background: #55555565;
 }
 
-.quantity_box{
-    width: 70px;
-    height: 26px;
-    border: 1px solid #e1dfe1;
-    border-radius: 22px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    font-size: 12px;
-    font-weight: 400;
-    color:#3E424A;
-    button{
+.quantity_box {
+  width: 70px;
+  height: 26px;
+  border: 1px solid #e1dfe1;
+  border-radius: 22px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 400;
+  color: #3e424a;
+  button {
     background-color: white;
-color: #10151f;
-    }
-
+    color: #10151f;
+  }
 }

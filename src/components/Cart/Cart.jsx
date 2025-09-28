@@ -1,5 +1,5 @@
 import styles from "./Cart.module.css";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import cartEmpty from "../../assets/empty_cart.png";
 import { getCart, deleteCartItem, updateCartItem  } from "../../services/cartService";
 import { useNavigate } from "react-router-dom";
@@ -51,9 +51,13 @@ function Cart({ isOpen, setIsOpen }) {
     navigate("/products");
   };
 
+  const handleGoToCheckout = () =>{
+    setIsOpen(false);
+    navigate("/checkout");
+  }
   const handleUpdateQuantity = async (id, newQuantity) => {
   try {
-    await updateCartItem(id, newQuantity); // your PATCH request
+    await updateCartItem(id, newQuantity); 
     setCartItems((prev) =>
       prev.map((item) =>
         item.id === id ? { ...item, quantity: newQuantity } : item
@@ -146,7 +150,7 @@ function Cart({ isOpen, setIsOpen }) {
                   <p>Total</p>
                   <p>$ {subTotal + 5}</p>
                 </div>
-                <button className={styles.checkout_button}>
+                <button className={styles.checkout_button} onClick={handleGoToCheckout}>
                   Go to checkout
                 </button>
               </div>

@@ -19,7 +19,6 @@ try {
 } catch (e) {
 }
   const avatar = user?.avatar || avatarPlaceholder;
-//   console.log(user)
   return (
     <>
       <div className="right_context2">
