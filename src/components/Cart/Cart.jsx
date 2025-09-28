@@ -79,7 +79,6 @@ function Cart({ isOpen, setIsOpen }) {
     }
   };
 
-  console.log("cart items:", cartItems);
   if (!isOpen) return null;
 
   return (

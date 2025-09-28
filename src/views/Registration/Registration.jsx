@@ -56,7 +56,6 @@ const Registration = () => {
       const response = await register(formDataToSend);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.user))
-      console.log("success:", response.data);
       navigate("/products");
     } catch (err) {
       console.error("API Error:", err.response?.data || err);

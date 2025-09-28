@@ -44,7 +44,6 @@ function Products() {
       setProducts(response.data.data);
       setGeneralData(response.data);
       setTotalPages(response.data.meta?.last_page);
-      console.log("products fetched:", response.data);
     } catch (error) {
       console.log("error fetching products:", error);
     }

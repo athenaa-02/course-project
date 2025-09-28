@@ -50,7 +50,6 @@ const [cartItems, setCartItems] = useState([]);
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log("success", response.data);
       reset();
       setShowSuccess(true)
     } catch (error) {
@@ -61,7 +60,6 @@ const [cartItems, setCartItems] = useState([]);
         })
         setBackendErrors(formatted)
       }else{
-        console.log('error is : ')
       }
 
       console.log("Error sending form:", error);

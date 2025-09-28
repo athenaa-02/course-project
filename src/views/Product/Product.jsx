@@ -22,7 +22,6 @@ useEffect(() => {
       const response = await instance.get(`/products/${id}`);
       setProduct(response.data);
       setMainImage(response.data.cover_image);
-      console.log("Product fetched:", response.data);
     } catch (error) {
       console.log("Error fetching product:", error);
     }
