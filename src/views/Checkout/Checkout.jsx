@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import instance from "../../services/axios";
 import {useState, useEffect} from "react"
+import SuccessModal from '../../components/SuccessModal'
 import RightContext2 from "../../components/RightContext2";
 import {getCart, updateCartItem, deleteCartItem} from '../../services/cartService'
 
@@ -29,6 +30,8 @@ const [cartItems, setCartItems] = useState([]);
     0
   );
 
+  const [showSuccess, setShowSuccess] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -49,6 +52,7 @@ const [cartItems, setCartItems] = useState([]);
       });
       console.log("success", response.data);
       reset();
+      setShowSuccess(true)
     } catch (error) {
       if(error.response?.data?.errors){
         const formatted = {}
@@ -247,7 +251,8 @@ const [cartItems, setCartItems] = useState([]);
                       </div>
                     </div>
                 
-            <button type="submit" className={styles.pay}>Pay</button>
+            <button type="submit" className={styles.pay} >Pay</button>
+            
           </aside>
         </form>
       </main>
