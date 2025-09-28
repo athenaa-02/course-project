@@ -12,6 +12,7 @@ function Product() {
 const { id } = useParams();
 const [product, setProduct] = useState(null);
 const [mainImage, setMainImage] = useState(null);
+const [selectedColor, setSelectedColor] = useState(null);
 
 
 useEffect(() => {
@@ -63,11 +64,19 @@ return (
 <p className={styles.product_price}>$ {product.price}</p>
 
 <div className={styles.color_wrapper}>
-  <span>Color: <span>baby pink</span></span>
+  <span>Color: <span>{product.avaliable_colors?.length>0 ? product.avaliable_colors[0] : 'Default'}</span></span>
   <div className={styles.colors}>
-  <button className={styles.color_picker}></button>
-  <button className={styles.color_picker}></button>
-  <button className={styles.color_picker}></button>
+  {(product.available_colors && product.available_colors.length > 0
+      ? product.available_colors
+      : ["#ccc"] 
+    ).map((color, index) => (
+      <button
+  key={index}
+  className={`${styles.color_picker} ${selectedColor === color ? styles.active : ""}`}
+  style={{ backgroundColor: color }}
+  onClick={() => setSelectedColor(color)}
+/>
+    ))}
 </div>
 </div>
 
