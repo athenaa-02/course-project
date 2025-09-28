@@ -2,11 +2,10 @@ import Header from "../../components/Header";
 import styles from "./Product.module.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import instance from "../../services/axios";
 import cartLogo from "../../assets/white_cart_logo.png";
 import RightContext2 from "../../components/RightContext2";
-import { CloudMoonRain } from "lucide-react";
-
+import instance from "../../services/axios";
+import { addToCart, updateCartItem, getCart} from "../../services/cartService"
 
 function Product() {
 const { id } = useParams();
@@ -51,7 +50,40 @@ const handleColorClick = (color, index) => {
     setMainImage(product.images[index]);
   }
 }
+
+
+const handleAddToCart = async () => {
+  if (!selectedSize || !selectedColor) return alert("Select size and color");
+
+  try {
+    const cartItems = await getCart(); 
+
+    const existingItem = cartItems.find(
+      (item) =>
+        item.product_id === product.id &&
+        item.size === selectedSize &&
+        item.color === selectedColor
+    );
+
+    if (existingItem) {
+      await updateCartItem(existingItem.id, existingItem.quantity + quantity);
+      alert("Updated quantity in cart!");
+    } else {
+      await addToCart({
+        productId: product.id,
+        color: selectedColor,
+        size: selectedSize,
+        quantity,
+      });
+      alert("Added to cart!");
+    }
+  } catch (error) {
+    console.log("Error adding to cart:", error);
+  }
+};
+
 if(!product) return <p>Loading...</p>
+
 
 return (
   <>
@@ -123,7 +155,7 @@ return (
     ))}
 </select>
   </div>
-  <button className={styles.add_btn}><img src={cartLogo} alt="" /> Add to cart</button>
+  <button className={styles.add_btn} onClick={handleAddToCart}><img src={cartLogo} alt="" /> Add to cart</button>
 </div>
 <figure></figure>
 
