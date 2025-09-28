@@ -42,3 +42,12 @@
     flex-direction: column;
     row-gap: 33px;
 }
+.inputError {
+  border: 1px solid red;
+}
+
+.errorText {
+  color: red;
+  font-size: 12px;
+  margin: 2px 0 5px 0;
+}
