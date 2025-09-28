@@ -2,9 +2,12 @@ import { useState } from "react";
 import LogoutButton from "./LogoutButton";
 import cartLogo from "../assets/cartLogo.png";
 import avatarPlaceholder from "../assets/Portrait_Placeholder.png";
+import Cart from "./Cart/Cart";
 
 function RightContext2() {
   const [isOpen, setIsOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
+
 
   const handleLogoutButtonToggle = () => {
     setIsOpen(!isOpen);
@@ -20,7 +23,7 @@ try {
   return (
     <>
       <div className="right_context2">
-        <img className="small_menu_cart" src={cartLogo} alt="" />
+        <img className="small_menu_cart" src={cartLogo} onClick={() => setCartOpen(true)} />
 
         <img className="small_menu_avatar" src={avatar}></img>
         <div
@@ -30,6 +33,7 @@ try {
           {isOpen && <LogoutButton />}
         </div>
       </div>
+        {cartOpen && <Cart isOpen={cartOpen} setIsOpen={setCartOpen} />}
     </>
   );
 }

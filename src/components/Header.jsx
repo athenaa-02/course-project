@@ -2,6 +2,7 @@ import '../App.css'
 import Vector from "../assets/Vector.png"
 
 function Header({rightContext}) {
+  
   return (
     <header>
       <div className='brand_header'>

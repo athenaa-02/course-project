@@ -1,18 +1,30 @@
 import styles from './Cart.module.css'
-import { getCart, deleteFromCart } from "../services/cartService";
+import { useEffect, useState } from 'react';
 
-function Cart() {
+import { getCart, deleteCartItem, addToCart } from '../../services/cartService';
 
-//     useEffect(() => {
-//   const fetchCart = async () => {
-//     const response = await getCart();
-//     setCartItems(response.data);
-//   };
-//   fetchCart();
-// }, []);
+function Cart({isOpen, setIsOpen}) {
+useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden"; 
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
   return (
    <>
-   
+         <div className={styles.overlay} onClick={() => setIsOpen(false)}></div>
+
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+        {children}
+      </div>
    </>
   )
 }
