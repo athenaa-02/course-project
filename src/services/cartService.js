@@ -34,7 +34,7 @@ export const deleteCartItem = async (cartItemId) => {
   const token = localStorage.getItem("token");
   if (!token) throw new Error("User not authenticated");
 
-  const response = await instance.delete(`/cart/${cartItemId}`, {
+  const response = await instance.delete(`cart/products/${cartItemId}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   return response.data;

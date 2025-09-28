@@ -62,7 +62,8 @@ const handleAddToCart = async () => {
       (item) =>
         item.product_id === product.id &&
         item.size === selectedSize &&
-        item.color === selectedColor
+        item.color === selectedColor 
+
     );
 
     if (existingItem) {
@@ -75,6 +76,7 @@ const handleAddToCart = async () => {
         size: selectedSize,
         quantity,
       });
+      
       alert("Added to cart!");
     }
   } catch (error) {
