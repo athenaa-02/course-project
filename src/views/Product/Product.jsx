@@ -13,7 +13,8 @@ const { id } = useParams();
 const [product, setProduct] = useState(null);
 const [mainImage, setMainImage] = useState(null);
 const [selectedSize, setSelectedSize] = useState(null);
-const [selectedColor, setSelectedColor] = useState(null);
+const [selectedColor, setSelectedColor] = useState(null)
+const [quantity, setQuantity] = useState(1)
 
 
 useEffect(() => {
@@ -114,12 +115,12 @@ return (
 
   <div className={styles.quantity_wrapper}>
     <span>Quantity</span>
-<select name="" id="" >
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-  <option value="5">5</option>
+<select value={quantity} onChange={(e) => setQuantity(Number(e.target.value))} >
+ {Array.from({ length: product.quantity }, (_, i) => i + 1).map((num) => (
+      <option key={num} value={num}>
+        {num}
+      </option>
+    ))}
 </select>
   </div>
   <button className={styles.add_btn}><img src={cartLogo} alt="" /> Add to cart</button>
@@ -135,7 +136,7 @@ return (
 </aside>
 </main>
   </>
-);
+)
 }
 
 export default Product;
