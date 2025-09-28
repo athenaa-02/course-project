@@ -30,8 +30,26 @@ useEffect(() => {
   fetchProduct();
 }, [id]);
 
-if(!product) return <p>Loading...</p>;
 
+useEffect(() => {
+  if (product) {
+    if (product.available_colors?.length > 0 && product.images?.length > 0) {
+      setSelectedColor(product.available_colors[0]);
+      setMainImage(product.images[0]);
+    } else {
+      setMainImage(product.cover_image);
+    }
+  }
+}, [product]);
+
+
+const handleColorClick = (color, index) => {
+  setSelectedColor(color);
+  if (product.images[index]) {
+    setMainImage(product.images[index]);
+  }
+}
+if(!product) return <p>Loading...</p>
 
 return (
   <>
@@ -64,19 +82,16 @@ return (
 <p className={styles.product_price}>$ {product.price}</p>
 
 <div className={styles.color_wrapper}>
-  <span>Color: <span>{product.avaliable_colors?.length>0 ? product.avaliable_colors[0] : 'Default'}</span></span>
+  <span>Color: <span>{selectedColor}</span></span>
   <div className={styles.colors}>
-  {(product.available_colors && product.available_colors.length > 0
-      ? product.available_colors
-      : ["#ccc"] 
-    ).map((color, index) => (
-      <button
-  key={index}
-  className={`${styles.color_picker} ${selectedColor === color ? styles.active : ""}`}
-  style={{ backgroundColor: color }}
-  onClick={() => setSelectedColor(color)}
-/>
-    ))}
+{product.available_colors?.map((color, index) => (
+    <button
+      key={index}
+      className={`${styles.color_picker} ${selectedColor === color ? styles.active : ""}`}
+      style={{ backgroundColor: color }}
+      onClick={() => handleColorClick(color, index)}
+    />
+  ))}
 </div>
 </div>
 
