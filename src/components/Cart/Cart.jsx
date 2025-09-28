@@ -1,7 +1,11 @@
 import styles from "./Cart.module.css";
 import { useEffect, useState } from "react";
 import cartEmpty from "../../assets/empty_cart.png";
-import { getCart, deleteCartItem, updateCartItem  } from "../../services/cartService";
+import {
+  getCart,
+  deleteCartItem,
+  updateCartItem,
+} from "../../services/cartService";
 import { useNavigate } from "react-router-dom";
 
 function Cart({ isOpen, setIsOpen }) {
@@ -38,10 +42,15 @@ function Cart({ isOpen, setIsOpen }) {
     }
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id, color, size) => {
     try {
       await deleteCartItem(id);
-      setCartItems((prev) => prev.filter((item) => item.id !== id));
+      setCartItems((prev) =>
+        prev.filter(
+          (item) =>
+            !(item.id === id && item.color === color && item.size === size)
+        )
+      );
     } catch (err) {
       console.log(err);
     }
@@ -51,22 +60,24 @@ function Cart({ isOpen, setIsOpen }) {
     navigate("/products");
   };
 
-  const handleGoToCheckout = () =>{
+  const handleGoToCheckout = () => {
     setIsOpen(false);
     navigate("/checkout");
-  }
-  const handleUpdateQuantity = async (id, newQuantity) => {
-  try {
-    await updateCartItem(id, newQuantity); 
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, quantity: newQuantity } : item
-      )
-    );
-  } catch (error) {
-    console.error("Error updating quantity:", error);
-  }
-};
+  };
+  const handleUpdateQuantity = async (id, color, size, newQuantity) => {
+    try {
+      await updateCartItem(id, newQuantity);
+      setCartItems((prev) =>
+        prev.map((item) =>
+          item.id === id && item.color === color && item.size === size
+            ? { ...item, quantity: newQuantity }
+            : item
+        )
+      );
+    } catch (error) {
+      console.error("Error updating quantity:", error);
+    }
+  };
 
   console.log("cart items:", cartItems);
   if (!isOpen) return null;
@@ -109,26 +120,28 @@ function Cart({ isOpen, setIsOpen }) {
                       <p>{item.size}</p>
                       <div className={styles.quantity_controls}>
                         <div className={styles.quantity_box}>
-                        <button
-                          onClick={() =>
-                            item.quantity > 1 &&
-                            handleUpdateQuantity(item.id, item.quantity - 1)
-                          }
-                        >
-                          –
-                        </button>
-                        <span>{item.quantity}</span>
-                        <button
-                          onClick={() =>
-                            handleUpdateQuantity(item.id, item.quantity + 1)
-                          }
-                        >
-                          +
-                        </button>
+                          <button
+                            onClick={() =>
+                              item.quantity > 1 &&
+                              handleUpdateQuantity(item.id, item.color, item.size, item.quantity - 1)
+                            }
+                          >
+                            –
+                          </button>
+                          <span>{item.quantity}</span>
+                          <button
+                            onClick={() =>
+                              handleUpdateQuantity(item.id,item.color,item.size, item.quantity + 1)
+                            }
+                          >
+                            +
+                          </button>
                         </div>
                         <button
                           className={styles.delete_button}
-                          onClick={() => handleDelete(item.id)}
+                          onClick={() =>
+                            handleDelete(item.id, item.color, item.size)
+                          }
                         >
                           Remove
                         </button>
@@ -150,7 +163,10 @@ function Cart({ isOpen, setIsOpen }) {
                   <p>Total</p>
                   <p>$ {subTotal + 5}</p>
                 </div>
-                <button className={styles.checkout_button} onClick={handleGoToCheckout}>
+                <button
+                  className={styles.checkout_button}
+                  onClick={handleGoToCheckout}
+                >
                   Go to checkout
                 </button>
               </div>

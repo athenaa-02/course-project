@@ -78,23 +78,30 @@ const [cartItems, setCartItems] = useState([]);
       }
     };
   
-    const handleDelete = async (id) => {
+    const handleDelete = async (id, color, size) => {
       try {
         await deleteCartItem(id);
-        setCartItems((prev) => prev.filter((item) => item.id !== id));
+        setCartItems((prev) =>
+      prev.filter(
+        (item) =>
+          !(item.id === id && item.color === color && item.size === size)
+      )
+    );
       } catch (err) {
         console.log(err);
       }
     };
 
-    const handleUpdateQuantity = async (id, newQuantity) => {
+    const handleUpdateQuantity = async (id,color, size, newQuantity) => {
     try {
       await updateCartItem(id, newQuantity); 
-      setCartItems((prev) =>
-        prev.map((item) =>
-          item.id === id ? { ...item, quantity: newQuantity } : item
-        )
-      );
+       setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === id && item.color === color && item.size === size
+          ? { ...item, quantity: newQuantity }
+          : item
+      )
+    );
     } catch (error) {
       console.error("Error updating quantity:", error);
     }
@@ -195,7 +202,7 @@ const [cartItems, setCartItems] = useState([]);
                                       <button
                                         onClick={() =>
                                           item.quantity > 1 &&
-                                          handleUpdateQuantity(item.id, item.quantity - 1)
+                                          handleUpdateQuantity(item.id, item.color, item.size, item.quantity - 1)
                                         }
                                       >
                                         –
@@ -203,7 +210,7 @@ const [cartItems, setCartItems] = useState([]);
                                       <span>{item.quantity}</span>
                                       <button
                                         onClick={() =>
-                                          handleUpdateQuantity(item.id, item.quantity + 1)
+                                          handleUpdateQuantity(item.id, item.color, item.size, item.quantity + 1)
                                         }
                                       >
                                         +
@@ -211,7 +218,7 @@ const [cartItems, setCartItems] = useState([]);
                                       </div>
                                       <button
                                         className={styles.delete_button}
-                                        onClick={() => handleDelete(item.id)}
+                                        onClick={() => handleDelete(item.id, item.color, item.size)}
                                       >
                                         Remove
                                       </button>
