@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { register } from "../../services/auth";
-import brandImg from "../../assets/brandImg.png";
+import brandImg from "../../assets/brand.jpg";
 import Header from "../../components/Header";
 import eyeLogo from "../../assets/eyeLogo.png";
 import { Link } from "react-router-dom";
@@ -14,10 +14,6 @@ import { User } from "lucide-react";
 const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-  const [errors, setErrors] = useState({});
-
-
 
   const [focused, setFocused] = useState({});
   const handleFocus = (name) => setFocused({ ...focused, [name]: true });
@@ -55,7 +51,7 @@ const Registration = () => {
       setErrors({});
       const response = await register(formDataToSend);
       localStorage.setItem("token", response.data.token);
-      localStorage.setItem("user", JSON.stringify(response.data.user))
+      localStorage.setItem("user", JSON.stringify(response.data.user));
       navigate("/products");
     } catch (err) {
       console.error("API Error:", err.response?.data || err);
@@ -73,14 +69,12 @@ const Registration = () => {
         });
       }
       setErrors(newErrors);
-      
     }
   };
-  
 
   return (
     <>
-      <Header rightContext={<RightContext/>}></Header>
+      <Header rightContext={<RightContext />}></Header>
       <main style={{ display: "flex" }}>
         <aside className="img_aside">
           <img src={brandImg} alt="" />

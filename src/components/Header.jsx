@@ -1,17 +1,16 @@
-import '../App.css'
-import Vector from "../assets/Vector.png"
+import "../App.css";
+import logo from "../assets/logo.jpg";
 
-function Header({rightContext}) {
-  
+function Header({ rightContext }) {
   return (
     <header>
-      <div className='brand_header'>
-        <img src={Vector} alt="" />
-        <h1>RedSeam Clothing</h1>
+      <div className="brand_header">
+        <img src={logo} className="logo" alt="" />
+        <h1>Linea</h1>
       </div>
-      <div className='right_side'>{rightContext}</div>
-      </header>
-  )
+      <div className="right_side">{rightContext}</div>
+    </header>
+  );
 }
 
-export default Header
+export default Header;

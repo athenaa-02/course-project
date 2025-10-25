@@ -173,3 +173,4 @@ return (
 }
 
 export default Product;
+

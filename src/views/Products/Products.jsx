@@ -8,6 +8,7 @@ import instance from "../../services/axios";
 import FilterChips from "../../components/FilterChips";
 import PaginatedItems from "../../components/pagination.jsx";
 import { useNavigate } from "react-router-dom";
+import Slider from "../../components/Slider.jsx";
 
 function Products() {
   const navigate = useNavigate()
@@ -83,6 +84,7 @@ function Products() {
   return (
     <>
       <Header rightContext={<RightContext2 />}></Header>
+      <Slider></Slider>
       <div className={styles.products_header}>
         <h3>Products</h3>
         <div className={styles.products_header_right}>

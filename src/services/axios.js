@@ -9,5 +9,9 @@ const instance = axios.create({
 })
 
 
+// export const instance2 = axios.create({
+//     baseURL: 'https://jsonplaceholder.typicode.com'
+// })
+
 
 export default instance

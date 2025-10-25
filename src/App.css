@@ -70,7 +70,7 @@ header {
 }
 
 button {
-  background-color: #ff4000;
+  background-color: #42b15b;
   border: none;
   color: white;
   border-radius: 10px;
@@ -115,7 +115,7 @@ span {
 
 .login_link {
   font-weight: 500;
-  color: #ff4000;
+  color: #42b15b;
   text-decoration: none;
   margin-left: 8px;
 }
@@ -157,7 +157,7 @@ span {
 }
 
 .error_text {
-  color: #ff4000;
+  color: #42b15b;
   font-weight: 300;
   font-size: 10px;
   margin: 0;
@@ -165,12 +165,12 @@ span {
 }
 
 .error_input {
-  border: 1px solid #ff4000;
+  border: 1px solid #42b15b;
 }
 
 .right_context2 {
   display: flex;
-  gap: 10px;
+  gap: 20px;
   align-items: center;
 }
 .logout_button_wrapper {
@@ -265,8 +265,8 @@ padding: 4px 11px;
 }
 
 .active .page-link {
-  color: #FF4000;
-  border: 1px solid #FF4000;
+  color: #42b15b;
+  border: 1px solid #42b15b;
 }
 .break-item {
   display: inline-block;
@@ -276,4 +276,12 @@ padding: 4px 11px;
 .break-link {
   cursor: default;
   text-decoration: none;
+}
+.logo{
+  width: 100%;
+  height: 50px
+}
+.brand_img{
+  width: 56vw;
+  height: 100vh;
 }

@@ -2,8 +2,8 @@ import Header from "../../components/Header";
 import { login } from "../../services/auth";
 import Button from "../../components/Button";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import brandImg from "../../assets/brandImg.png";
+import {  useState } from "react";
+import brandImg from "../../assets/brand.jpg";
 import RightContext from "../../components/RightContext";
 import { useNavigate } from "react-router-dom";
 import eyeLogo from "../../assets/eyeLogo.png";
@@ -38,7 +38,7 @@ function Login() {
       setErrors({});
       const response = await login(formData);
       localStorage.setItem("token", response.data.token);
-      localStorage.setItem("user", JSON.stringify(response.data.user))
+      localStorage.setItem("user", JSON.stringify(response.data.user));
       navigate("/products");
     } catch (err) {
       const newErrors = {};
@@ -54,19 +54,131 @@ function Login() {
           newErrors[key] = apiErrors[key][0];
         });
       }
-      if(err.response?.data?.message){
-        newErrors.general = err.response.data.message
+      if (err.response?.data?.message) {
+        newErrors.general = err.response.data.message;
       }
       setErrors(newErrors);
-      console.log("Mapped errors:", newErrors);
+      // console.log("Mapped errors:", newErrors);
     }
   };
+
+  // 1: თითოეული პაროლისთვის შეამოწმე შეიცავს თუ არა ციფრს. დაბეჭდე კონსოლში პაროლი და "YES" ან "NO".
+
+  // 2: დაითვალე რომელი სიმბოლოა (character) ყველაზე ხშირად გამოყენებული და დაბეჭდე კონსოლში.
+
+//   const passwords = [
+//     "Hello123",
+
+//     "mypassword",
+
+//     "SecurePass!",
+
+//     "12345678",
+
+//     "Admin@2024",
+
+//     "weakpass",
+
+//     "Strong#Pass1",
+
+//     "password123",
+
+//     "Test$123",
+
+//     "simple",
+//   ];
+
+//   passwords.forEach((str) => {
+//     if (/\d/.test(str)) {
+//       // console.log(`${str} yes`)
+//     } else {
+//       // console.log(`${str} no`)
+//     }
+//   });
+
+//   function mostRepeated(passwords) {
+//     const count = {};
+
+//     passwords.forEach(password => {
+//     for (let char of password) {
+//       count[char] = (count[char] || 0) + 1
+
+      
+//     }  
+//     });
+    
+// // console.log(count)
+//     const maxCount = Math.max(...Object.values(count))
+
+//     const mostRepeated = Object.keys(count).filter(c => count[c] === maxCount)
+
+//     // console.log(maxCount, mostRepeated)
+//   }
+
+//   mostRepeated(passwords)
+
+
+
+
+
+// გვაქვს მოცემული ორი API:
+
+// Users: https://jsonplaceholder.typicode.com/users
+// Posts: https://jsonplaceholder.typicode.com/posts
+// 1: ორივე api-იდან წამოიღეთ ინფორმაცია და დაბეჭდეთ კონსოლში.
+
+// 2: ორივე API-იდან წამოიღე ინფორმაცია. HTML-ში შექმენი მომხმარებლების სია 
+// (პირველი 5 მომხმარებელი). თითოეულზე
+//  გამოაჩინე: სახელი, username, email, რამდენი პოსტი აქვს.
+
+
+// const [users, setUsers] = useState([])
+// const [posts, setPosts] = useState([])
+
+// useEffect(() =>{
+// const getUsers = async () =>{
+
+//     const response = await instance2.get('/users')
+//    setUsers(response.data)
+//   //  console.log(response.data)
+
+// }
+
+// const getPosts = async () =>{
+//   const response = await instance2.get('/posts')
+//   setPosts(response.data)
+//   console.log(response.data)
+// }
+// getUsers()
+// getPosts()
+
+// }, [])
+
+
+
   return (
     <>
-      <Header rightContext={<RightContext/>}></Header>
+
+
+{/* <div>
+  {users.map(user =>(<>
+   <p>{user.name} {user.email}</p>
+   <p>posts: {posts.filter((post) =>{
+
+return post.userId === user.id 
+   }
+   ).length} </p>
+   </>
+  ))}
+</div>
+ */}
+
+
+
+      <Header rightContext={<RightContext />}></Header>
       <main style={{ display: "flex" }}>
         <aside className="img_aside">
-          <img src={brandImg} alt="" />
+          <img src={brandImg} className="brand_img" alt="" />
         </aside>
         <aside className="form_aside">
           <form onSubmit={submitHandler}>

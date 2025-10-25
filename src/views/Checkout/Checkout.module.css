@@ -52,14 +52,14 @@
   row-gap: 16px;
 }
 .inputError {
-  border: 1px solid #ff4000;
+  border: 1px solid #42b15b;
 }
 
 .errorText {
   height: 16px;
   min-width: 1px;
   display: inline-block;
-  color: #ff4000;
+  color: #42b15b;
   font-size: 12px;
 }
 
