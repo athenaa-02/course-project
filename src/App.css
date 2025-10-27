@@ -157,7 +157,7 @@ span {
 }
 
 .error_text {
-  color: #42b15b;
+  color:red;
   font-weight: 300;
   font-size: 10px;
   margin: 0;
@@ -165,7 +165,7 @@ span {
 }
 
 .error_input {
-  border: 1px solid #42b15b;
+  border: 1px solid red;
 }
 
 .right_context2 {
@@ -184,9 +184,9 @@ span {
 .log_out_btn {
   cursor: pointer;
   position: absolute;
-  top: 20px;
-  width: 80px;
-  height: 25px;
+  top: 55px;
+  width: 85px;
+  height: 33px;
 }
 
 .small_menu_avatar {
@@ -285,6 +285,18 @@ padding: 4px 11px;
   width: 56vw;
   height: 100%;
 }
+.languages{
+  position: absolute;
+display: flex;
+top: 20px;
+left: 50%;
+gap: 10px;
+img{
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+}
 
 @media (max-width: 1350px) {
 
@@ -305,5 +317,8 @@ padding: 4px 11px;
 @media screen and (max-width: 740px) {
   .brand_img{
     display: none;
+  }
+  .from_asterisk, .to_asterisk{
+display: none;
   }
 }

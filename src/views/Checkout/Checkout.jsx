@@ -149,7 +149,7 @@ const [cartItems, setCartItems] = useState([]);
                   type="email"
                   placeholder="Email"
                   {...register("email")}
-                  className={errors.email || backendErrors.email ? styles.inputError : ''}
+                  className={`email ${errors.email || backendErrors.email ? styles.inputError : ''}`}
                 />
                 <span className={styles.errorText}>{errors.email?.message || backendErrors.email}</span>
               </div>

@@ -167,3 +167,48 @@ button.add_btn{
 .active{
   border: 3px solid #e1dfe1;
 }
+
+@media screen and (max-width: 1450px){
+  .product_main{
+    gap: 20px;
+    padding: 0 20px 0 20px;
+  }
+}
+
+@media screen and (max-width: 1280px){
+  .listing{
+    padding: 0 35px 0 35px;
+  }
+  .product_main{
+    flex-direction: column;
+    padding: 0 40px 0 40px;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+  }
+  aside.images{
+  flex-direction: column-reverse;
+  gap: 30px;
+  }
+  .side_images_wrapper{
+    flex-direction: row;
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 710px) {
+  .main_image img {
+  width: 350px;
+  height: 450px;
+}
+.thumbnail {
+  height: 121.33px;
+}
+aside.product_details{
+  width: 100%;
+  h2, p.product_price{
+    font-size: 25px;
+}
+}
+
+}
