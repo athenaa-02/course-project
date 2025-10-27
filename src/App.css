@@ -283,5 +283,27 @@ padding: 4px 11px;
 }
 .brand_img{
   width: 56vw;
-  height: 100vh;
+  height: 100%;
+}
+
+@media (max-width: 1350px) {
+
+  form{
+    width: 400px;
+  }
+}
+@media (max-width: 970px) {
+  
+  form{
+    width: 300px;
+  }
+  header {
+    padding: 0 20px;
+  }
+
+} 
+@media screen and (max-width: 740px) {
+  .brand_img{
+    display: none;
+  }
 }

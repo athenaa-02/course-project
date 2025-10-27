@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { register } from "../../services/auth";
@@ -9,12 +9,12 @@ import { Link } from "react-router-dom";
 import RightContext from "../../components/RightContext";
 import { validationSchema } from "../../components/Validations";
 import ImageUpload from "../../components/ImageUpload/ImageUpload";
-import { User } from "lucide-react";
+
 
 const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
+  const [errors, setErrors] = useState({});
   const [focused, setFocused] = useState({});
   const handleFocus = (name) => setFocused({ ...focused, [name]: true });
   const handleBlur = (name) => setFocused({ ...focused, [name]: false });
@@ -75,9 +75,9 @@ const Registration = () => {
   return (
     <>
       <Header rightContext={<RightContext />}></Header>
-      <main style={{ display: "flex" }}>
+      <main style={{ display: "flex" }} className="reg_main">
         <aside className="img_aside">
-          <img src={brandImg} alt="" />
+          <img src={brandImg} alt="" className="brand_img"/>
         </aside>
         <aside className="form_aside">
           <form onSubmit={submitHandler}>

@@ -176,7 +176,7 @@ return post.userId === user.id
 
 
       <Header rightContext={<RightContext />}></Header>
-      <main style={{ display: "flex" }}>
+      <main style={{ display: "flex"}} className="reg_main">
         <aside className="img_aside">
           <img src={brandImg} className="brand_img" alt="" />
         </aside>
