@@ -1,5 +1,5 @@
 import geo from '../assets/Flag_of_Georgia.svg';
-import eng from '../assets/flag_of_the_United_Kingdom.svg.webp';
+import eng from '../assets/Flag_of_the_United_Kingdom.svg.webp';
 
 
 function Languages() {
