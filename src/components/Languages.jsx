@@ -6,8 +6,8 @@ function Languages() {
   return (
     <>
     <div className='languages'>
-        <img src={geo} alt="georgian flag" />
-        <img src={eng} alt="english flag" />
+        <img src={geo} alt="Georgian flag" />
+        <img src={eng} alt="Britain flag" />
     </div>
    
     </>
