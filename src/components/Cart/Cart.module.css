@@ -117,8 +117,9 @@
   flex-direction: column;
   gap: 16px;
   position: fixed;
-  bottom: 40px;
+  bottom: 20px;
   width: 460px;
+  background-color: white;
 
   div {
     display: flex;
@@ -126,11 +127,13 @@
   }
   .checkout_button {
     height: 59px;
-    margin-top: 102px;
+    /* margin-top: 102px; */
+    /* position: absolute; */
+
   }
 }
 .items_list {
-  max-height: 450px;
+  max-height: 360px;
   overflow-y: auto;
   overflow-x: hidden;
   padding-right: 5px;
@@ -161,5 +164,49 @@
   button {
     background-color: white;
     color: #10151f;
+  }
+}
+
+
+@media screen and (max-width: 700px) {
+  .modal {
+    width: fit-content;
+    padding: 20px;
+  }
+.cart_items{
+    width: 280px;
+ }
+ .cart_item{
+  width: 100%;
+ }
+ .item_details{
+   
+  div{
+    flex-direction: column;
+  margin: 0;
+  }
+  p, button{
+    margin: 0;
+  }
+  h4{
+    margin-bottom: 10px;
+  }
+  .quantity_controls{
+gap: 0;
+align-items: start;
+  }
+  .quantity_box{
+    flex-direction: row;
+
+  }
+ }
+ .cart_footer{
+  width: 280px;
+  .wrapper{
+    width: 100%;
+  }
+ }
+  .checkout_button{
+width: 100%;
   }
 }
